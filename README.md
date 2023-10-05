@@ -1,2 +1,2 @@
 # Analysing-CRISPR-screens-with-edgeR
-This repository includes bookdown documents showing how to use edgeR Bioconductor package to analyse CRISPR screens.
+Within this repository, you'll find bookdown documents that provide guidance on utilizing the edgeR Bioconductor package for the analysis of CRISPR screens. 
