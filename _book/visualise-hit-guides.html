@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Visualise hit guides | Analysing CRISPR Screens with edgeR</title>
+  <meta name="description" content="<p>This is a book version to write a book.
+set in the _output.yml file.
+The HTML output format for this example is bookdown::gitbook,</p>" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Visualise hit guides | Analysing CRISPR Screens with edgeR" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a book version to write a book.
+set in the _output.yml file.
+The HTML output format for this example is bookdown::gitbook,</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Visualise hit guides | Analysing CRISPR Screens with edgeR" />
+  
+  <meta name="twitter:description" content="<p>This is a book version to write a book.
+set in the _output.yml file.
+The HTML output format for this example is bookdown::gitbook,</p>" />
+  
+
+<meta name="author" content="Göknur Giner" />
+
+
+<meta name="date" content="2023-10-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="differential-abundance-analysis-at-guide-level.html"/>
+<link rel="next" href="differential-abundance-analysis-at-gene-level.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.30/datatables.js"></script>
+<link href="libs/dt-core-1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.13.4/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.13.4/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Analysing-CRISPR-screens-with-edgeR</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="" data-path="setting-up.html"><a href="setting-up.html"><i class="fa fa-check"></i>Setting up</a>
+<ul>
+<li class="chapter" data-level="" data-path="setting-up.html"><a href="setting-up.html#install-r"><i class="fa fa-check"></i>Install R</a></li>
+<li class="chapter" data-level="" data-path="setting-up.html"><a href="setting-up.html#install-rstudio"><i class="fa fa-check"></i>Install RStudio</a></li>
+<li class="chapter" data-level="" data-path="setting-up.html"><a href="setting-up.html#install-required-packages"><i class="fa fa-check"></i>Install required packages</a></li>
+<li class="chapter" data-level="" data-path="setting-up.html"><a href="setting-up.html#load-required-packages"><i class="fa fa-check"></i>Load required packages</a></li>
+<li class="chapter" data-level="" data-path="setting-up.html"><a href="setting-up.html#download-the-material"><i class="fa fa-check"></i>Download the material</a></li>
+<li class="chapter" data-level="" data-path="setting-up.html"><a href="setting-up.html#create-necessary-directories"><i class="fa fa-check"></i>Create necessary directories</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="counting-the-sgrnas-with-rsubread.html"><a href="counting-the-sgrnas-with-rsubread.html"><i class="fa fa-check"></i>Counting the sgRNAs with RSubread</a>
+<ul>
+<li class="chapter" data-level="" data-path="counting-the-sgrnas-with-rsubread.html"><a href="counting-the-sgrnas-with-rsubread.html#build-an-index"><i class="fa fa-check"></i>Build an index</a></li>
+<li class="chapter" data-level="" data-path="counting-the-sgrnas-with-rsubread.html"><a href="counting-the-sgrnas-with-rsubread.html#align-the-fastq-files"><i class="fa fa-check"></i>Align the FASTQ files</a></li>
+<li class="chapter" data-level="" data-path="counting-the-sgrnas-with-rsubread.html"><a href="counting-the-sgrnas-with-rsubread.html#create-a-dgelist-object"><i class="fa fa-check"></i>Create a DGEList object</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="preprocessing-the-data.html"><a href="preprocessing-the-data.html"><i class="fa fa-check"></i>Preprocessing the data</a>
+<ul>
+<li class="chapter" data-level="" data-path="preprocessing-the-data.html"><a href="preprocessing-the-data.html#remove-control-guides"><i class="fa fa-check"></i>Remove control guides</a></li>
+<li class="chapter" data-level="" data-path="preprocessing-the-data.html"><a href="preprocessing-the-data.html#check-guide-distribution"><i class="fa fa-check"></i>Check guide distribution</a></li>
+<li class="chapter" data-level="" data-path="preprocessing-the-data.html"><a href="preprocessing-the-data.html#evaluate-the-uniformity"><i class="fa fa-check"></i>Evaluate the uniformity</a></li>
+<li class="chapter" data-level="" data-path="preprocessing-the-data.html"><a href="preprocessing-the-data.html#remove-lowly-expressed-guides"><i class="fa fa-check"></i>Remove lowly expressed guides</a>
+<ul>
+<li class="chapter" data-level="" data-path="preprocessing-the-data.html"><a href="preprocessing-the-data.html#strict-filtering"><i class="fa fa-check"></i>Strict filtering</a></li>
+<li class="chapter" data-level="" data-path="preprocessing-the-data.html"><a href="preprocessing-the-data.html#permissive-filtering"><i class="fa fa-check"></i>Permissive filtering</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="preprocessing-the-data.html"><a href="preprocessing-the-data.html#look-at-density-plots"><i class="fa fa-check"></i>Look at density plots</a></li>
+<li class="chapter" data-level="" data-path="preprocessing-the-data.html"><a href="preprocessing-the-data.html#normalise-the-counts"><i class="fa fa-check"></i>Normalise the counts</a>
+<ul>
+<li class="chapter" data-level="" data-path="preprocessing-the-data.html"><a href="preprocessing-the-data.html#cpm-normalised-counts"><i class="fa fa-check"></i>CPM normalised counts</a></li>
+<li class="chapter" data-level="" data-path="preprocessing-the-data.html"><a href="preprocessing-the-data.html#tmm-normalised-counts"><i class="fa fa-check"></i>TMM normalised counts</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="preprocessing-the-data.html"><a href="preprocessing-the-data.html#unsupervised-clustering-of-samples"><i class="fa fa-check"></i>Unsupervised clustering of samples</a></li>
+<li class="chapter" data-level="" data-path="preprocessing-the-data.html"><a href="preprocessing-the-data.html#visualise-guide-abundance-profiles-of-samples"><i class="fa fa-check"></i>Visualise guide abundance profiles of samples</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="differential-abundance-analysis-at-guide-level.html"><a href="differential-abundance-analysis-at-guide-level.html"><i class="fa fa-check"></i>Differential abundance analysis at guide level</a>
+<ul>
+<li class="chapter" data-level="" data-path="differential-abundance-analysis-at-guide-level.html"><a href="differential-abundance-analysis-at-guide-level.html#create-the-design-matrix"><i class="fa fa-check"></i>Create the design matrix</a></li>
+<li class="chapter" data-level="" data-path="differential-abundance-analysis-at-guide-level.html"><a href="differential-abundance-analysis-at-guide-level.html#fit-a-model-when-there-is-no-biological-replicates"><i class="fa fa-check"></i>Fit a model when there is no biological replicates</a>
+<ul>
+<li class="chapter" data-level="" data-path="differential-abundance-analysis-at-guide-level.html"><a href="differential-abundance-analysis-at-guide-level.html#classic-edger"><i class="fa fa-check"></i>Classic edgeR</a></li>
+<li class="chapter" data-level="" data-path="differential-abundance-analysis-at-guide-level.html"><a href="differential-abundance-analysis-at-guide-level.html#edger-glmlrt"><i class="fa fa-check"></i>edgeR glmLRT</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="differential-abundance-analysis-at-guide-level.html"><a href="differential-abundance-analysis-at-guide-level.html#fit-a-model-when-there-are-biological-replicates"><i class="fa fa-check"></i>Fit a model when there are biological replicates</a>
+<ul>
+<li class="chapter" data-level="" data-path="differential-abundance-analysis-at-guide-level.html"><a href="differential-abundance-analysis-at-guide-level.html#dispersion-estimates-and-biological-variation"><i class="fa fa-check"></i>Dispersion estimates and biological variation</a></li>
+<li class="chapter" data-level="" data-path="differential-abundance-analysis-at-guide-level.html"><a href="differential-abundance-analysis-at-guide-level.html#edger-glmlrt-1"><i class="fa fa-check"></i>edgeR glmLRT</a></li>
+<li class="chapter" data-level="" data-path="differential-abundance-analysis-at-guide-level.html"><a href="differential-abundance-analysis-at-guide-level.html#edger-quasi"><i class="fa fa-check"></i>edgeR quasi</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="visualise-hit-guides.html"><a href="visualise-hit-guides.html"><i class="fa fa-check"></i>Visualise hit guides</a>
+<ul>
+<li class="chapter" data-level="" data-path="visualise-hit-guides.html"><a href="visualise-hit-guides.html#volcano-plot-toxa-vs-control"><i class="fa fa-check"></i>Volcano plot (ToxA vs Control)</a></li>
+<li class="chapter" data-level="" data-path="visualise-hit-guides.html"><a href="visualise-hit-guides.html#volcano-plot-toxb-vs-control"><i class="fa fa-check"></i>Volcano plot (ToxB vs Control)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="differential-abundance-analysis-at-gene-level.html"><a href="differential-abundance-analysis-at-gene-level.html"><i class="fa fa-check"></i>Differential abundance analysis at gene level</a>
+<ul>
+<li class="chapter" data-level="" data-path="differential-abundance-analysis-at-gene-level.html"><a href="differential-abundance-analysis-at-gene-level.html#toxa-vs-control"><i class="fa fa-check"></i>ToxA vs Control</a></li>
+<li class="chapter" data-level="" data-path="differential-abundance-analysis-at-gene-level.html"><a href="differential-abundance-analysis-at-gene-level.html#toxb-vs-control"><i class="fa fa-check"></i>ToxB vs Control</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Analysing CRISPR Screens with edgeR</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="visualise-hit-guides" class="section level1 unnumbered hasAnchor">
+<h1>Visualise hit guides<a href="visualise-hit-guides.html#visualise-hit-guides" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>A volcano plot is a scatter plot that visualizes the differential abundance of guides. The fold change is typically displayed on the x-axis, while the y-axis represents the corresponding p-values. The significantly differentially abundant genes are the ones found in the upper-left and upper-right corners. Below we visualise the hits for ToxA vs Control and ToxB vs Control samples, respectively.</p>
+<div id="volcano-plot-toxa-vs-control" class="section level2 unnumbered hasAnchor">
+<h2>Volcano plot (ToxA vs Control)<a href="visualise-hit-guides.html#volcano-plot-toxa-vs-control" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="visualise-hit-guides.html#cb89-1" tabindex="-1"></a><span class="co"># remove rows that contain NA values</span></span>
+<span id="cb89-2"><a href="visualise-hit-guides.html#cb89-2" tabindex="-1"></a>de <span class="ot">&lt;-</span> lrt2.toxa[<span class="fu">complete.cases</span>(lrt2.toxa), ]</span>
+<span id="cb89-3"><a href="visualise-hit-guides.html#cb89-3" tabindex="-1"></a><span class="fu">colnames</span>(de)[<span class="fu">colnames</span>(de) <span class="sc">==</span> <span class="st">&quot;logFC&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;log2FoldChange&quot;</span></span>
+<span id="cb89-4"><a href="visualise-hit-guides.html#cb89-4" tabindex="-1"></a><span class="fu">colnames</span>(de)[<span class="fu">colnames</span>(de) <span class="sc">==</span> <span class="st">&quot;PValue&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;pvalue&quot;</span></span>
+<span id="cb89-5"><a href="visualise-hit-guides.html#cb89-5" tabindex="-1"></a><span class="fu">colnames</span>(de)[<span class="fu">colnames</span>(de) <span class="sc">==</span> <span class="st">&quot;Symbol&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;gene_symbol&quot;</span></span>
+<span id="cb89-6"><a href="visualise-hit-guides.html#cb89-6" tabindex="-1"></a><span class="fu">colnames</span>(de)[<span class="fu">colnames</span>(de) <span class="sc">==</span> <span class="st">&quot;FDR&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;adjusted_pvalue&quot;</span></span>
+<span id="cb89-7"><a href="visualise-hit-guides.html#cb89-7" tabindex="-1"></a>de<span class="sc">$</span>diffabundant <span class="ot">&lt;-</span> <span class="st">&quot;Pass p-value cuttoff&quot;</span></span>
+<span id="cb89-8"><a href="visualise-hit-guides.html#cb89-8" tabindex="-1"></a>de<span class="sc">$</span>diffabundant[de<span class="sc">$</span>adjusted_pvalue <span class="sc">&gt;</span> <span class="fl">0.05</span>] <span class="ot">&lt;-</span> <span class="st">&quot;Not Significant&quot;</span></span>
+<span id="cb89-9"><a href="visualise-hit-guides.html#cb89-9" tabindex="-1"></a>de<span class="sc">$</span>diffabundant[de<span class="sc">$</span>log2FoldChange <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">5</span> <span class="sc">&amp;</span> de<span class="sc">$</span>log2FoldChange <span class="sc">&gt;=</span> <span class="dv">5</span> <span class="sc">&amp;</span> de<span class="sc">$</span>adjusted_pvalue <span class="sc">&lt;</span></span>
+<span id="cb89-10"><a href="visualise-hit-guides.html#cb89-10" tabindex="-1"></a>    <span class="fl">0.05</span>] <span class="ot">&lt;-</span> <span class="st">&quot;Pass p-value &amp; Log2FC cuttoff&quot;</span></span>
+<span id="cb89-11"><a href="visualise-hit-guides.html#cb89-11" tabindex="-1"></a>de<span class="sc">$</span>diffabundant[de<span class="sc">$</span>log2FoldChange <span class="sc">&gt;=</span> <span class="dv">5</span> <span class="sc">&amp;</span> de<span class="sc">$</span>adjusted_pvalue <span class="sc">&lt;=</span> <span class="fl">0.05</span>] <span class="ot">&lt;-</span> <span class="st">&quot;Up&quot;</span></span>
+<span id="cb89-12"><a href="visualise-hit-guides.html#cb89-12" tabindex="-1"></a>de<span class="sc">$</span>diffabundant[de<span class="sc">$</span>log2FoldChange <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">5</span> <span class="sc">&amp;</span> de<span class="sc">$</span>adjusted_pvalue <span class="sc">&lt;=</span> <span class="fl">0.05</span>] <span class="ot">&lt;-</span> <span class="st">&quot;Down&quot;</span></span>
+<span id="cb89-13"><a href="visualise-hit-guides.html#cb89-13" tabindex="-1"></a><span class="fu">head</span>(de)</span></code></pre></div>
+<pre><code>             gene_symbol          UID                  seq log2FoldChange
+HGLibB_38324      PRDM13 HGLibB_38324 GCAAGTACCTGTCAGACCGC      11.209176
+HGLibA_32966       NUDT2 HGLibA_32966 ATGAGCACCAAGCCTACCGC      11.594388
+HGLibB_42762      SBSPON HGLibB_42762 GACAAGCTACGTCTCCACAC      12.255728
+HGLibB_44908     SLC35B2 HGLibB_44908 TCCGCCTGAAGTACTGCACC      10.286574
+HGLibB_45454       SLIT2 HGLibB_45454 TCTCTAGTTCTTTAAGATCC      11.404868
+HGLibB_23505      IQGAP3 HGLibB_23505 CACTCACAGGCTGCCCAGCC       9.781491
+                logCPM       LR       pvalue adjusted_pvalue diffabundant
+HGLibB_38324 10.829302 89.05910 3.831913e-21    2.143074e-16           Up
+HGLibA_32966  8.780164 73.01061 1.289546e-17    3.195504e-13           Up
+HGLibB_42762  9.530267 72.44893 1.714112e-17    3.195504e-13           Up
+HGLibB_44908 11.311403 69.70313 6.893661e-17    9.638544e-13           Up
+HGLibB_45454  8.763229 68.20288 1.475103e-16    1.649962e-12           Up
+HGLibB_23505  9.434533 66.97834 2.745064e-16    2.491273e-12           Up</code></pre>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="visualise-hit-guides.html#cb91-1" tabindex="-1"></a>g_down <span class="ot">&lt;-</span> <span class="fu">which</span>(de<span class="sc">$</span>log2FoldChange <span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">&amp;</span> de<span class="sc">$</span>adjusted_pvalue <span class="sc">&lt;=</span> <span class="fl">0.05</span>)</span>
+<span id="cb91-2"><a href="visualise-hit-guides.html#cb91-2" tabindex="-1"></a>g_up <span class="ot">&lt;-</span> <span class="fu">which</span>(de<span class="sc">$</span>log2FoldChange <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">5</span> <span class="sc">&amp;</span> de<span class="sc">$</span>adjusted_pvalue <span class="sc">&lt;=</span> <span class="fl">0.05</span>)</span>
+<span id="cb91-3"><a href="visualise-hit-guides.html#cb91-3" tabindex="-1"></a>de<span class="sc">$</span>delabel <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb91-4"><a href="visualise-hit-guides.html#cb91-4" tabindex="-1"></a>de<span class="sc">$</span>delabel[<span class="fu">c</span>(g_down[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>], g_up[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>])] <span class="ot">&lt;-</span> de<span class="sc">$</span>gene_symbol[<span class="fu">c</span>(g_down[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>], g_up[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>])]</span>
+<span id="cb91-5"><a href="visualise-hit-guides.html#cb91-5" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> de, <span class="fu">aes</span>(<span class="at">x =</span> log2FoldChange, <span class="at">y =</span> <span class="sc">-</span><span class="fu">log10</span>(adjusted_pvalue), <span class="at">col =</span> diffabundant,</span>
+<span id="cb91-6"><a href="visualise-hit-guides.html#cb91-6" tabindex="-1"></a>    <span class="at">label =</span> delabel)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="fu">geom_text_repel</span>(<span class="at">max.overlaps =</span> <span class="cn">Inf</span>) <span class="sc">+</span></span>
+<span id="cb91-7"><a href="visualise-hit-guides.html#cb91-7" tabindex="-1"></a>    <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;black&quot;</span>, <span class="st">&quot;gray&quot;</span>, <span class="st">&quot;red&quot;</span>)) <span class="sc">+</span> <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>,</span>
+<span id="cb91-8"><a href="visualise-hit-guides.html#cb91-8" tabindex="-1"></a>    <span class="dv">5</span>), <span class="at">col =</span> <span class="st">&quot;darkred&quot;</span>) <span class="sc">+</span> <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="sc">-</span><span class="fu">log10</span>(<span class="fl">0.05</span>), <span class="at">col =</span> <span class="st">&quot;darkred&quot;</span>)</span></code></pre></div>
+<p><img src="figures/volcano%20of%20guides%20toxa-1.png" width="960" /></p>
+</div>
+<div id="volcano-plot-toxb-vs-control" class="section level2 unnumbered hasAnchor">
+<h2>Volcano plot (ToxB vs Control)<a href="visualise-hit-guides.html#volcano-plot-toxb-vs-control" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="visualise-hit-guides.html#cb92-1" tabindex="-1"></a><span class="co"># remove rows that contain NA values</span></span>
+<span id="cb92-2"><a href="visualise-hit-guides.html#cb92-2" tabindex="-1"></a>de <span class="ot">&lt;-</span> lrt2.toxb[<span class="fu">complete.cases</span>(lrt2.toxb), ]</span>
+<span id="cb92-3"><a href="visualise-hit-guides.html#cb92-3" tabindex="-1"></a><span class="fu">colnames</span>(de)[<span class="fu">colnames</span>(de) <span class="sc">==</span> <span class="st">&quot;logFC&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;log2FoldChange&quot;</span></span>
+<span id="cb92-4"><a href="visualise-hit-guides.html#cb92-4" tabindex="-1"></a><span class="fu">colnames</span>(de)[<span class="fu">colnames</span>(de) <span class="sc">==</span> <span class="st">&quot;PValue&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;pvalue&quot;</span></span>
+<span id="cb92-5"><a href="visualise-hit-guides.html#cb92-5" tabindex="-1"></a><span class="fu">colnames</span>(de)[<span class="fu">colnames</span>(de) <span class="sc">==</span> <span class="st">&quot;Symbol&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;gene_symbol&quot;</span></span>
+<span id="cb92-6"><a href="visualise-hit-guides.html#cb92-6" tabindex="-1"></a><span class="fu">colnames</span>(de)[<span class="fu">colnames</span>(de) <span class="sc">==</span> <span class="st">&quot;FDR&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;adjusted_pvalue&quot;</span></span>
+<span id="cb92-7"><a href="visualise-hit-guides.html#cb92-7" tabindex="-1"></a>de<span class="sc">$</span>diffabundant <span class="ot">&lt;-</span> <span class="st">&quot;Pass p-value cuttoff&quot;</span></span>
+<span id="cb92-8"><a href="visualise-hit-guides.html#cb92-8" tabindex="-1"></a>de<span class="sc">$</span>diffabundant[de<span class="sc">$</span>adjusted_pvalue <span class="sc">&gt;</span> <span class="fl">0.05</span>] <span class="ot">&lt;-</span> <span class="st">&quot;Not Significant&quot;</span></span>
+<span id="cb92-9"><a href="visualise-hit-guides.html#cb92-9" tabindex="-1"></a>de<span class="sc">$</span>diffabundant[de<span class="sc">$</span>log2FoldChange <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">5</span> <span class="sc">&amp;</span> de<span class="sc">$</span>log2FoldChange <span class="sc">&gt;=</span> <span class="dv">5</span> <span class="sc">&amp;</span> de<span class="sc">$</span>adjusted_pvalue <span class="sc">&lt;</span></span>
+<span id="cb92-10"><a href="visualise-hit-guides.html#cb92-10" tabindex="-1"></a>    <span class="fl">0.05</span>] <span class="ot">&lt;-</span> <span class="st">&quot;Pass p-value &amp; Log2FC cuttoff&quot;</span></span>
+<span id="cb92-11"><a href="visualise-hit-guides.html#cb92-11" tabindex="-1"></a>de<span class="sc">$</span>diffabundant[de<span class="sc">$</span>log2FoldChange <span class="sc">&gt;=</span> <span class="dv">5</span> <span class="sc">&amp;</span> de<span class="sc">$</span>adjusted_pvalue <span class="sc">&lt;=</span> <span class="fl">0.05</span>] <span class="ot">&lt;-</span> <span class="st">&quot;Up&quot;</span></span>
+<span id="cb92-12"><a href="visualise-hit-guides.html#cb92-12" tabindex="-1"></a>de<span class="sc">$</span>diffabundant[de<span class="sc">$</span>log2FoldChange <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">5</span> <span class="sc">&amp;</span> de<span class="sc">$</span>adjusted_pvalue <span class="sc">&lt;=</span> <span class="fl">0.05</span>] <span class="ot">&lt;-</span> <span class="st">&quot;Down&quot;</span></span>
+<span id="cb92-13"><a href="visualise-hit-guides.html#cb92-13" tabindex="-1"></a><span class="fu">head</span>(de)</span></code></pre></div>
+<pre><code>             gene_symbol          UID                  seq log2FoldChange
+HGLibA_02011     ANKRD16 HGLibA_02011 CGACGTCGATGTGCCCACAC      10.154406
+HGLibA_27301      LRRC29 HGLibA_27301 CTGTGTCCAGTCCCGCTTCG       7.300759
+HGLibB_00250     ABHD14B HGLibB_00250 TTAAGTACCTGGCAGGTCAA       7.407535
+HGLibA_42214      RPUSD4 HGLibA_42214 GACCCGAGGAATTCTCCACC      10.519154
+HGLibA_39135     PSMC3IP HGLibA_39135 AATCGTGGCCCTCACTGCTA       9.567023
+HGLibB_42757       SBNO2 HGLibB_42757 AGGGTATGGCGGCAGCGAGA       9.895113
+                logCPM       LR       pvalue adjusted_pvalue diffabundant
+HGLibA_02011 11.875792 94.27706 2.743108e-22    1.534138e-17           Up
+HGLibA_27301 11.784015 81.55213 1.706991e-19    4.773343e-15           Up
+HGLibB_00250 12.149716 78.52597 7.895333e-19    1.471874e-14           Up
+HGLibA_42214 10.140291 75.48743 3.677413e-18    5.141667e-14           Up
+HGLibA_39135 11.552013 68.32588 1.385901e-16    1.550186e-12           Up
+HGLibB_42757  9.521769 67.73967 1.865714e-16    1.739064e-12           Up</code></pre>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="visualise-hit-guides.html#cb94-1" tabindex="-1"></a>g_down <span class="ot">&lt;-</span> <span class="fu">which</span>(de<span class="sc">$</span>log2FoldChange <span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">&amp;</span> de<span class="sc">$</span>adjusted_pvalue <span class="sc">&lt;=</span> <span class="fl">0.05</span>)</span>
+<span id="cb94-2"><a href="visualise-hit-guides.html#cb94-2" tabindex="-1"></a>g_up <span class="ot">&lt;-</span> <span class="fu">which</span>(de<span class="sc">$</span>log2FoldChange <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">5</span> <span class="sc">&amp;</span> de<span class="sc">$</span>adjusted_pvalue <span class="sc">&lt;=</span> <span class="fl">0.05</span>)</span>
+<span id="cb94-3"><a href="visualise-hit-guides.html#cb94-3" tabindex="-1"></a>de<span class="sc">$</span>delabel <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb94-4"><a href="visualise-hit-guides.html#cb94-4" tabindex="-1"></a>de<span class="sc">$</span>delabel[<span class="fu">c</span>(g_down[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>], g_up[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>])] <span class="ot">&lt;-</span> de<span class="sc">$</span>gene_symbol[<span class="fu">c</span>(g_down[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>], g_up[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>])]</span>
+<span id="cb94-5"><a href="visualise-hit-guides.html#cb94-5" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> de, <span class="fu">aes</span>(<span class="at">x =</span> log2FoldChange, <span class="at">y =</span> <span class="sc">-</span><span class="fu">log10</span>(adjusted_pvalue), <span class="at">col =</span> diffabundant,</span>
+<span id="cb94-6"><a href="visualise-hit-guides.html#cb94-6" tabindex="-1"></a>    <span class="at">label =</span> delabel)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="fu">geom_text_repel</span>(<span class="at">max.overlaps =</span> <span class="cn">Inf</span>) <span class="sc">+</span></span>
+<span id="cb94-7"><a href="visualise-hit-guides.html#cb94-7" tabindex="-1"></a>    <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;black&quot;</span>, <span class="st">&quot;gray&quot;</span>, <span class="st">&quot;red&quot;</span>)) <span class="sc">+</span> <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>,</span>
+<span id="cb94-8"><a href="visualise-hit-guides.html#cb94-8" tabindex="-1"></a>    <span class="dv">5</span>), <span class="at">col =</span> <span class="st">&quot;darkred&quot;</span>) <span class="sc">+</span> <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="sc">-</span><span class="fu">log10</span>(<span class="fl">0.05</span>), <span class="at">col =</span> <span class="st">&quot;darkred&quot;</span>)</span></code></pre></div>
+<p><img src="figures/volcano%20of%20guides%20toxb-1.png" width="960" /></p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="differential-abundance-analysis-at-guide-level.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="differential-abundance-analysis-at-gene-level.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/goknurginer/Analysing-CRISPR-screens-with-edgeRindex.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Analysing-CRISPR-screens-with-edgeR.pdf", "Analysing-CRISPR-screens-with-edgeR.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

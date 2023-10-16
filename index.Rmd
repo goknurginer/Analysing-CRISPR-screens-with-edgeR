@@ -16,25 +16,15 @@ github-repo: "rstudio/bookdown-demo"
 ---
 
 # Welcome {-}
-Welcome to the home of "Analyzing CRISPR Screens with edgeR". This platform serves as the central hub for a comprehensive guide on leveraging one of the most commonly used differential expression analysis Bioconductor package edgeR, for the analysis of CRISPR screens. Whether you're delving into CRISPR experiments for the first time or seeking advanced insights, this guide will equip you with essential skills and knowledge to extract meaningful information from your data.
+Welcome to the "Analyzing CRISPR Screens with edgeR". Our aim is to empower researchers like you with the tools and knowledge needed to navigate the complex landscape of CRISPR data analysis. 
 
-## What You Will Learn{-}
-Our mission is to provide you with a robust foundation in the analysis of CRISPR data using edgeR. Throughout this guide, we walk you through various steps of typical workflows using example data sets to check the quality of sequencing data, count the single guide RNAs (sgRNAs), process, analyze, visualize, and explore the differential abundance of the sgRNAs and related the pathways. By doing so, we address key concepts and methodologies, ensuring a deep understanding of the intricacies involved in CRISPR data analysis.
+This platform serves as the central hub for a comprehensive guide on leveraging one of the most commonly used differential expression analysis Bioconductor package edgeR, for the analysis of CRISPR screens. Whether you're delving into CRISPR experiments for the first time or seeking advanced insights, this guide will equip you with essential skills and knowledge to extract meaningful information from your data using powerful and robust statistical methods presented in edgeR.
 
-## What You Won’t Learn{-}
-The landscape of CRISPR data analysis is vast and diverse. In this guide, we focus on specific tool—edgeR provided by Bioconductor. While we aim to cover edgeR comprehensively, it's important to note that the realm of bioinformatic analysis offers numerous possibilities, depending on the experimental setup and biological system. Our guide provides a starting point for your exploration, acknowledging the richness of available tools beyond the scope of this book.
-
-Recognize that your specific data may require a tailored approach, and our examples serve as templates rather than one-size-fits-all solutions. We encourage you to view them as a foundation upon which you can build and adapt for your unique analyses.
-
-## Who We Wrote This For{-}
+Here we provide you with a robust foundation in the analysis of CRISPR data using edgeR. Throughout this guide, we walk you through various steps of typical CRISPR analysis workflows using example data set to count the single guide RNAs (sgRNAs) from your sequencing files (fastq, etc.), pre-process the count matrices (filtering, normalising, etc.), fit a statistical model to identify the hit guides, genes and pathways, and visualize the results.
 
 This guide is crafted with both novice and experienced researchers in mind. Whether you're an experimental biologist stepping into the realm of CRISPR data or a seasoned bioinformatician seeking insights into edgeR in the context of CRISPR gene editing, you'll find valuable content here. We make minimal assumptions about your previous programming or statistical experience, aiming to create a resource that is accessible to a broad audience.
 
 We welcome feedback from all users to improve this guide continually, enhancing accessibility and refining technical details. Your input is instrumental in making this resource more valuable to the community.
-
-## Why We Wrote This{-}
-
-The inception of this guide dates back to the recognition of the growing prominence of CRISPR data analysis within the field of biology. As CRISPR experiments evolved, so did the need for specialized tools. In response, we embarked on creating a guide that not only showcases the capabilities of edgeR but also celebrates the Bioconductor community's contributions to advancing the field of biological analysis. Our aim is to empower researchers like you with the tools and knowledge needed to navigate the complex landscape of CRISPR data analysis.
 
 # Setting up{-}
 
@@ -60,14 +50,14 @@ RStudio can be downloaded for all platforms at the link below:
 
 ## Install required packages{-}
 ```{r, setup, include=FALSE, echo=FALSE}
-knitr::opts_chunk$set(comment = '', 
-                      fig.width = 6, 
-                      fig.height = 6, 
+knitr::opts_chunk$set(comment = '',
+                      fig.path = "./figures/",
                       message=FALSE,
                       warning=FALSE,
                       tidy = TRUE
 )
 ```
+
 ```{r install packages, eval=FALSE, echo=-1}
 setwd("~/Library/CloudStorage/GoogleDrive-goknurginer@gmail.com/My Drive/Professional/Workshops_given_by_me/BioC/Analysing-CRISPR-screens-with-edgeR")
 if (!require("BiocManager", quietly = TRUE))
@@ -81,7 +71,10 @@ BiocManager::install("org.Hs.eg.db")
 install.packages("ggplot2")
 install.packages("DT")
 install.packages("ggrepel")
+install.packages("RColorBrewer")
+BiocManager::install("GO.db")
 ```
+
 ## Load required packages{-}
 ```{r load packages}
 library(edgeR)
@@ -92,34 +85,51 @@ library(AnnotationDbi)
 library(org.Hs.eg.db)
 library(ggplot2)
 library(DT)
-library(ggrepel) # tidy volcano
+library(ggrepel)
+library(RColorBrewer)
+library(GO.db)
 ```
-## Download the material used in this book {-}
-1. Fastq files
-2. GECKO human library
+
+## Download the material {-}
+The sequencing files and human GeCKO sgRNA library can be downloaded from the github repository by clicking on the following links.
+
+1. [FASTQ files](https://github.com/goknurginer/Analysing-CRISPR-screens-with-edgeR/tree/main/fasqfiles)
+
+2. [GeCKO human library](https://github.com/goknurginer/Analysing-CRISPR-screens-with-edgeR/tree/main/sgRNA_library)
+
+## Create necessary directories{-}
+```{r create directories, eval=FALSE}
+dir.create("./index")
+dir.create("./RData")
+dir.create("./tables")
+dir.create("./figures")
+```
 
 # Counting the sgRNAs with RSubread{-}
-Then we load the guide library, and subsequently, we must convert it into the FASTA format to construct an index for alignment.
+To count the sgRNAs, we must first load the human GeCKO sgRNA library, and subsequently, convert it into the FASTA format to construct an index for alignment. To do that we use `DNAStringSet` and `writeXStringSet` functions from `GenomicAlignments` Bioconductor package.
+
 ```{r read sgRNA library}
 GeCKO <- read.delim("sgRNA_library/GeCKOv21_Human.tsv")
 GeCKO[1:2,]
 sgRNAs <- DNAStringSet(GeCKO$seq)
 names(sgRNAs) <- GeCKO$UID
 sgRNAs
-```
-
-```{r, eval=FALSE, echo=FALSE}
-dir.create("./index")
 writeXStringSet(sgRNAs,
                 file="./index/GeCKO.fa")
 ```
 
-## Building an index{-}
+## Build an index{-}
+Then we build an index of sgRNA library with `buildindex` function from `RSubread` package.
 ```{r build index, eval=FALSE}
 buildindex("./index/GeCKO","./index/GeCKO.fa", 
            indexSplit=FALSE)
 ```
-## Aligning the fastq files{-}
+
+## Align the FASTQ files{-}
+Next step is to align the sequencing files with `align` function from `RSubread` and count the reads with `readGAlignments` function in `GenomicAlignments`.
+
+The subsequent phase involves aligning the sequencing files ([FASTQ files](https://github.com/goknurginer/Analysing-CRISPR-screens-with-edgeR/tree/main/fasqfiles)) using the `align` function from `RSubread` and counting the reads for each sgRNA using the `readGAlignments` function in `GenomicAlignments`.
+
 ```{r, eval=FALSE}
 fastqs <- dir(path = "./fastq_files", pattern = "*.fastq.gz", full.names = TRUE)
 counts <- list()
@@ -133,9 +143,12 @@ for(i in 1:length(fastqs)){
 }
 my_counts <- do.call(cbind,counts)
 colnames(my_counts) <- c("Control_1","Control_2","ToxA_1","ToxA_2","ToxB_1","ToxB_2")
+write.table(my_counts, "my_counts.txt")
 ```
-## Creating a DGEList object{-}
-```{r create dgelist object, eval=-8}
+
+## Create a DGEList object{-}
+For downstream analysis, here we are going to convert count matrix obtained in the previous section into a DGEList object using the `DGEList` function from `edgeR` package. The DGEList object consists of three components: counts, information about samples and gene annotations. 
+```{r create dgelist object}
 counts <- read.table("my_counts.txt", header = TRUE)
 group <- factor(c("Control","Control","ToxA","ToxA","ToxB","ToxB"),levels = c("Control","ToxA","ToxB"))
 samples <- data.frame(group = group, sampleName=colnames(counts), biorep=rep(c(1,2),3))
@@ -143,66 +156,67 @@ genes <- GeCKO
 names(genes)[names(genes)=="gene_id"] <- "Symbol"
 d <- DGEList(counts = counts, samples = samples, genes = genes)
 d
-dir.create("RData")
 save(d, file="./RData/DGEList.RData")
 ```
 
 # Preprocessing the data{-}
+Before conducting the differential abundance analysis in a CRISPR screen, we eliminate guides that could compromise the statistical power in the downstream analysis. Specifically, we exclude non-targeting sgRNAs employed to assess the sgRNA library's quality, as they are unnecessary for the further statistical analysis. Subsequently, we filter out guides with very low counts across many samples.
+
+The next step is normalization. The normalization following filtering is vital because each library is sequenced at varying depths, and libraries with higher counts will naturally yield higher counts. Normalization involves transforming raw counts onto a different scale where differences in library sizes are considered and adjusted for.
 ```{r load dgelist object}
 load("./RData/DGEList.RData")
 ```
 
-## Guide distribution across samples {-}
-```{r guide distribution}
+### Remove control guides{-}
+First we remove 1000 control (non-targeting) sgRNAs from the count matrix as they are designed not to target in the genome.
+```{r non-targeting filtering}
+d.raw <- d
+dim(d <- d[!d$genes$Symbol %in% grep("Non", d$genes$Symbol, value = TRUE),])
+```
+
+## Check guide distribution {-}
+The control samples contain the majority of sgRNAs, and the numbers decrease in the treated samples.
+```{r guide distribution,fig.width=10,fig.height=10}
 data <- NULL
-sample_names <- colnames(d)
-l <- colSums(!d$counts==0)
-data <- data.frame(row.name = sample_names, l=l,t=as.character(d$samples$group))
-data <- data[order(data$l, d$samples$group),]
-col <- c("#6DAEB0", "#FAA578", "#FFB6C1")
+sample_names <- c(colnames(d),"GeCKO")
+l <- c(as.integer(colSums(!d$counts==0)),nrow(d$counts))
+t <- c(as.character(d$samples$group),"GeCKO")
+data <- data.frame(row.name = sample_names, 
+                   l=l,
+                   t=t)
+data <- data[order(data$l, data$t),]
+col <- c("#FF6666","#6DAEB0", "#FAA578", "#FFB6C1")
 my_bar <- barplot(data$l, 
-                  xlim = c(0,70000),
-                  names.arg = data$row.name, 
+                  xlim = c(0,140000),
+                  names.arg = data$row.name,
                   las=1, 
-                  space=1, 
+                  space=1,
+                  cex.names = 0.85,
                   xlab = "The number of detected guides",
                   main = "The distribution of guides",
                   col = col[as.factor(data$t)], 
                   border=NA,
                   legend=TRUE,
                   horiz = TRUE)
-text(my_bar, x=data$l+3000 # adjust this number
-     , paste0("(n:", data$l, ")"),las = 2)
+text(my_bar, x=data$l+7000 # adjust this number
+     , paste0("n:", data$l),las = 2)
 legend("bottomright",legend = levels(factor(data$t)),fill = col)
 ```
 
-## Gini indices{-}
+## Evaluate the uniformity{-}
+The Gini index, originally an economic measure of inequality, is used in CRISPR analysis to evaluate the uniformity of sgRNA presence. A Gini index of 0 indicates evenness, while an index of 1 suggests unevenness. Here, it's notable that the control samples exhibit greater uniformity compared to the treated samples.
 ```{r gini}
+gini(d$counts) 
 boxplot(gini(d$counts) ~ d$samples$sampleName, ylab = "Gini Indices", xlab="", cex.axis=0.8)
 ```
 
-## Library sizes by group {-}
-```{r library sizes before filtering}
-yy <- d[, order(d$samples$group, colSums(d$counts))]
-yy.logcpm <- cpm(yy$counts, log = T)
-boxplot(yy.logcpm, las = 2, pch = 19, col = col[as.factor(yy$samples$group)], outcex = 0.3, outcol = col[as.factor(yy$samples$group)],labels = colnames(yy.logcpm), main = "SgRNA abundance before filtering", ylab = "SgRNA representation (log2 cpm normalised reads)")
-legend("topleft", legend = levels(factor(yy$samples$group)), col = col, pch = 19, cex = 0.5)
-```
-
-## Removing lowly expressed guides{-}
+## Remove lowly expressed guides{-}
 Guides lacking a substantial number of reads in any sample should be excluded from downstream analyses. There are multiple rationales for this choice. From a biological perspective, guides that fail to register at a biologically relevant level in any condition are deemed uninteresting and are consequently disregarded. From a statistical standpoint, the elimination of guides with low counts enhances the reliability of estimating the mean-variance relationship in the data. It also reduces the number of statistical tests required for subsequent analyses focused on differential abundance.
 
-To implement this, here we used two filtering methods: one permissive and the other strict. For the rigorous approach, guides with low expression were filtered out, retaining as many guides as possible with meaningful counts. This was achieved using the filterByExpr() function in the edgeR package, a tool commonly applied in RNA-seq experiments for automated gene filtering. Initially, the count matrix contained 122,411 guides. After applying filterByExpr(), 113,395 guides (93%) were removed due to their low presence, leaving 9,016 guides for further analysis. It's worth noting that filterByExpr() often retains only one guide per gene, which is suboptimal for CRISPR screens, where the collective behavior of multiple guides targeting the same gene is essential for validation.
+To implement this, here we used two filtering methods: one permissive and the other strict. 
 
-To address this limitation, we used a more permissive filtering approach. This method involved defining guide-wise threshold (th1) and sample-wise threshold (th2). Th1 was computed using count per million (CPM) normalized values, while th2 was determined as the average number of samples in each condition. This approach aims to strike a balance, allowing for the inclusion of as many guides as possible targeting the same gene, facilitating a more robust assessment of the collective impact of guides in CRISPR screens. Consequently, with the permissive approach, we retained 58171 (48%) of the guides.
-
-### Remove Non-targeting guides
-First we remove 1000 Non-targeting sgRNAs.
-```{r non-targeting filtering}
-d.raw <- d
-dim(d <- d[!d$genes$Symbol %in% grep("Non", d$genes$Symbol, value = TRUE),])
-```
 ### Strict filtering{-}
+For the strict approach, guides with low expression were filtered out, retaining as many guides as possible with meaningful counts. This was achieved using the `filterByExpr()` function in the `edgeR` package, a tool commonly applied in RNA-seq experiments for automated gene filtering. Initially, the count matrix contained 122,411 guides. After applying `filterByExpr()`, 113,395 guides (93%) were removed due to their low presence, leaving 9,016 guides for further analysis. It's worth noting that `filterByExpr()` often retains only one guide per gene, which is sub optimal for CRISPR screens, where the collective behavior of multiple guides targeting the same gene is essential for validation.
 ```{r strict filtering}
 keep.exprs <- filterByExpr(d, group = d$samples$group)
 table(keep.exprs)
@@ -216,21 +230,19 @@ nsgrna
 barplot(nsgrna, col = "#FF9999", ylim=c(0,7000), border = NA, main="The distribution of number of sgRNAs per gene \n (After strict filtering)")
 ```
 
-```{r library sizes after strict filtering}
-yy <- d.filtered.s[, order(d.filtered.s$samples$group, colSums(d.filtered.s$counts))]
-yy.logcpm <- cpm(yy$counts, log = T)
-boxplot(yy.logcpm, las = 2, pch = 19, cex.axis = 0.5, col = col[as.factor(yy$samples$group)], outcex = 0.3, outcol = col[as.factor(yy$samples$group)],labels = colnames(yy.logcpm), main = "SgRNA abundance after strict filtering", ylab = "SgRNA representation (log2 cpm normalised reads)")
-legend("topleft", legend = levels(factor(yy$samples$group)), col = col, pch = 19, cex = 0.5)
-```
 
 ### Permissive filtering{-}
+To address the limitations of strict filtering, we used a more permissive filtering approach. This method involved defining guide-wise threshold ($th1$) and sample-wise threshold ($th2$). We utilize CPM (Counts Per Million) values instead of raw counts to prevent bias toward samples with larger library sizes. For this dataset, the median library size is about $341,201$ and $th1$ is computed as $1e6/341201 ≈ 0.29$, so the permissive filtering keeps the guides that have a CPM of 0.29 or more in at least $th2=2$ samples. 
+
+This approach aims to strike a balance, allowing for the inclusion of as many guides as possible targeting the same gene, facilitating a more robust assessment of the collective impact of guides in CRISPR screens. Consequently, with the permissive approach, we retained $58171 (48\%)$ of the guides.
+
 ```{r permissive filtering}
-th1 <- as.vector(cpm(1, mean(d$samples$lib.size)))
-th1 # average count per million reads (1e6/mean(d$samples$lib.size))
+th1 <- as.vector(cpm(1, median(d$samples$lib.size)))
+th1 # median count per million reads (1e6/mean(d$samples$lib.size))
 th2 <- 2 # average number of sample per condition
-isexprs <- rowSums(cpm(d) > th1) >= th2
-table(isexprs)
-dim(d.filtered.p <- d[isexprs, ])
+keep.exprs <- rowSums(cpm(d) > th1) >= th2
+table(keep.exprs)
+dim(d.filtered.p <- d[keep.exprs, ,keep.lib.sizes = FALSE])
 ```
 ```{r permissive filtering guide distribution}
 genes_sgrna <- d.filtered.p$genes$Symbol
@@ -240,77 +252,255 @@ nsgrna
 barplot(nsgrna, col = "#FF9999", ylim=c(0,7000), border = NA, main="The distribution of number of sgRNAs per gene \n (After permissive filtering)")
 ```
 
-```{r library sizes after permissive filtering}
+## Look at density plots{-}
+The density distributions of raw counts reveal the presence of numerous guides with low abundance, characterized by small log-cpm values. The application of permissive filtering appears to diminish the count of such lowly abundant guides. This reduction is evident in the decreased peakedness (kurtosis) of the distribution, accompanied by a shift towards greater symmetry as indicated by the balanced skewness.
+```{r density plots, fig.height=5, fig.width=15, echo=-49}
+x <- d
+nsamples <- ncol(x)
+col.density <- brewer.pal(nsamples, "Paired")
+par(mfrow=c(1,3))
+samplenames <- colnames(x) 
+cpm <- cpm(x)
+lcpm <- cpm(x, log=TRUE)
+plot(density(lcpm[,1],bw=0.4), col=col.density[1], lwd=2, ylim=c(0,1), las=2, main="", xlab="")
+title(main="A. Raw data", xlab="Log-cpm")
+for (i in 2:nsamples){
+  den <- density(lcpm[,i],bw=0.4)
+  lines(den$x, den$y, col=col.density[i], lwd=2)
+}
+legend("topright", samplenames, text.col=col.density, bty="n")
+
+x <- d.filtered.p
+cpm <- cpm(x)
+lcpm <- cpm(x, log=TRUE)
+plot(density(lcpm[,1],bw=0.4), col=col.density[1], lwd=2, ylim=c(0,1), las=2, main="", xlab="")
+title(main="B. Permissively filtered data", xlab="Log-cpm")
+for (i in 2:nsamples){
+  den <- density(lcpm[,i],bw=0.4)
+  lines(den$x, den$y, col=col.density[i], lwd=2)
+}
+legend("topright", samplenames, text.col=col.density, bty="n")
+
+x <- d.filtered.s
+cpm <- cpm(x)
+lcpm <- cpm(x, log=TRUE)
+plot(density(lcpm[,1],bw=0.4), col=col.density[1], lwd=2, ylim=c(0,1), las=2, main="", xlab="")
+title(main="C. Strictly filtered data", xlab="Log-cpm")
+for (i in 2:nsamples){
+  den <- density(lcpm[,i])
+  lines(den$x, den$y, col=col.density[i], lwd=2)
+}
+legend("topright", samplenames, text.col=col.density, bty="n")
+# dev.off()
+```
+
+## Normalise the counts{-}
+During sample preparation or sequencing, factors unrelated to biological processes can influence the expression of individual samples. The expectation is that all samples should exhibit a comparable range and distribution of expression values. To ensure uniformity across the entire experiment, normalization becomes necessary. Commonly, raw counts are transformed into a scale that accounts for differences in library sizes.
+
+In our case, we first employed the `cpm` function in `edgeR` to transform raw counts into counts per million (CPM) and log2-counts per million (log-CPM) values. This transformation facilitates a standardized representation of expression values, enabling more meaningful comparisons across samples.
+
+### CPM normalised counts {-}
+```{r library sizes after filtering and CPM normalization, fig.width=15, fig.height=5}
+par(mfrow=c(1,3))
+yy <- d[, order(d$samples$group, colSums(d$counts))]
+yy.logcpm <- cpm(yy, log = T)
+boxplot(yy.logcpm, las = 2, pch = 19, col = col[as.factor(yy$samples$group)], outcex = 0.3, outcol = col[as.factor(yy$samples$group)],labels = colnames(yy.logcpm), main = "A. CPM normalised raw data", ylab = "SgRNA representation (log2 cpm normalised reads)")
+legend("topleft", legend = levels(factor(yy$samples$group)), col = col, pch = 19, cex = 0.5)
+
 yy <- d.filtered.p[, order(d.filtered.p$samples$group, colSums(d.filtered.p$counts))]
-yy.logcpm <- cpm(yy$counts, log = T)
-boxplot(yy.logcpm, las = 2, pch = 19, cex.axis = 0.5, col = col[as.factor(yy$samples$group)], outcex = 0.3, outcol = col[as.factor(yy$samples$group)],labels = colnames(yy.logcpm), main = "SgRNA abundance after permissive filtering", ylab = "SgRNA representation (log2 cpm normalised reads)")
+yy.logcpm <- cpm(yy, log = T)
+boxplot(yy.logcpm, las = 2, pch = 19, col = col[as.factor(yy$samples$group)], outcex = 0.3, outcol = col[as.factor(yy$samples$group)],labels = colnames(yy.logcpm), main = "B. CPM normalised permissively filtered data", ylab = "SgRNA representation (log2 cpm normalised reads)")
+legend("topleft", legend = levels(factor(yy$samples$group)), col = col, pch = 19, cex = 0.5)
+
+yy <- d.filtered.s[, order(d.filtered.s$samples$group, colSums(d.filtered.s$counts))]
+yy.logcpm <- cpm(yy, log = T)
+boxplot(yy.logcpm, las = 2, pch = 19, col = col[as.factor(yy$samples$group)], outcex = 0.3, outcol = col[as.factor(yy$samples$group)],labels = colnames(yy.logcpm), main = "C. CPM normalised strictly filtered data", ylab = "SgRNA representation (log2 cpm normalised reads)")
 legend("topleft", legend = levels(factor(yy$samples$group)), col = col, pch = 19, cex = 0.5)
 ```
 
-## Normalising the sgRNA counts{-}
-During the sample preparation or sequencing process, external factors that are not of biological interest can affect the expression of individual samples. 
-For example, samples processed in the first batch of an experiment can have higher expression overall when compared to samples processed in a second batch. 
-It is assumed that all samples should have a similar range and distribution of expression values. 
-Normalisation is required to ensure that the expression distributions of each sample are similar across the entire experiment.
-Here we applied the upperquartile method from calcNormFactors function in edgeR. In the upper-quartile normalization method of Bullard et al (2010), **Bullard JH, Purdom E, Hansen KD, Dudoit S. (2010) Evaluation of statistical methods for normalization and differential expression in mRNA-Seq experiments. BMC Bioinformatics 11, 94.**, the scale factors are calculated from the 75% quantile of the counts for each library, after removing genes that are zero in all libraries.
-When working with DGEList-objects, the normalisation factors are automatically stored. 
-For this dataset, the effect of upperquartile-normalisation is mild, as evident in the magnitude of the scaling factors, which are all not too far from 1 as we expected them to be.
-```{r normalising}
-yy.norm <- d.filtered.s
-yy.norm$samples$norm.factors <- calcNormFactors(yy.norm$counts, method = "TMM")
-yy.norm$samples[,1:3] # TMM norm factors of strictly filtered data
-yy.norm$samples$norm.factors <- calcNormFactors(yy.norm$counts+100, method = "upperquartile")
-yy.norm$samples[,1:3] # Upperquartile norm factors of strict filtered data
+Following that, we implemented the `TMM` normalization using the `normLibSizes` function within the `edgeR` package. When dealing with DGEList objects, the normalization factors are automatically stored in the DGEList object. 
 
-yy.norm <- d.filtered.p
-yy.norm$samples$norm.factors <- calcNormFactors(yy.norm$counts, method = "TMM")
-yy.norm$samples[,1:3] # TMM norm factors of permissive filtered data
-yy.norm$samples$norm.factors <- calcNormFactors(yy.norm$counts+100, method = "upperquartile")
-yy.norm$samples[,1:3] # Upperquartile norm factors of permissive filtered data
+In the permissively filtered data, the influence of TMM normalization is modest, as suggested by the scaling factors, all of which are reasonably close to 1. However, notable is the fact that the normalization factors for ToxB samples are below one. This implies that a small number of highly abundant guide counts disproportionately influence the sequencing, causing counts for other genes to be lower than expected based on the library size. Consequently, the library size will be reduced, akin to scaling up the counts within that library. Such a scenario is typical in CRISPR screens.
+
+To address this, introducing a prior value to the counts—sufficiently small to avoid altering the overall data distribution—serves to balance the library sizes, mitigating the impact of a few highly expressed guides.
+
+### TMM normalised counts {-}
+
+```{r library sizes after filtering and TMM normalization, fig.width=10, fig.height=10}
+par(mfrow=c(2,2))
+yy <- d.filtered.p[, order(d.filtered.p$samples$group, colSums(d.filtered.p$counts))]
+yy$samples$norm.factors <- normLibSizes(yy$counts, method = "TMM")
+yy$samples[,1:3] # TMM normalization factors of permissively filtered data
+yy.logcpm <- cpm(yy, log = T)
+boxplot(yy.logcpm, las = 2, pch = 19, col = col[as.factor(yy$samples$group)], outcex = 0.3, outcol = col[as.factor(yy$samples$group)],labels = colnames(yy.logcpm), main = "A. TMM normalised permissively filtered data", ylab = "SgRNA representation (log2 cpm normalised reads)")
+legend("topleft", legend = levels(factor(yy$samples$group)), col = col, pch = 19, cex = 0.5)
+
+yy <- d.filtered.p[, order(d.filtered.p$samples$group, colSums(d.filtered.p$counts))]
+yy$samples$norm.factors <- normLibSizes(yy$counts+100, method = "TMM")
+yy$samples[,1:3] # TMM normalization factors of permissively filtered data after adding a prior count of 100
+yy.logcpm <- cpm(yy, log = T)
+boxplot(yy.logcpm, las = 2, pch = 19, col = col[as.factor(yy$samples$group)], outcex = 0.3, outcol = col[as.factor(yy$samples$group)],labels = colnames(yy.logcpm), main = "B. TMM offset-normalised permissively filtered data", ylab = "SgRNA representation (log2 cpm normalised reads)")
+legend("topleft", legend = levels(factor(yy$samples$group)), col = col, pch = 19, cex = 0.5)
+yy.norm <-yy # we continue downstream analysis with this object
+
+yy <- d.filtered.s[, order(d.filtered.s$samples$group, colSums(d.filtered.s$counts))]
+yy$samples$norm.factors <- normLibSizes(yy$counts, method = "TMM")
+yy$samples[,1:3] # TMM normalization factors of strictly filtered data
+yy.logcpm <- cpm(yy, log = T)
+boxplot(yy.logcpm, las = 2, pch = 19, col = col[as.factor(yy$samples$group)], outcex = 0.3, outcol = col[as.factor(yy$samples$group)],labels = colnames(yy.logcpm), main = "C. TMM normalised strictly filtered data", ylab = "SgRNA representation (log2 cpm normalised reads)")
+legend("topleft", legend = levels(factor(yy$samples$group)), col = col, pch = 19, cex = 0.5)
+
+yy <- d.filtered.s[, order(d.filtered.s$samples$group, colSums(d.filtered.s$counts))]
+yy$samples$norm.factors <- normLibSizes(yy$counts+100, method = "TMM")
+yy$samples[,1:3] # TMM normalization factors of strictly filtered data after adding a prior count of 100
+yy.logcpm <- cpm(yy, log = T)
+boxplot(yy.logcpm, las = 2, pch = 19, col = col[as.factor(yy$samples$group)], outcex = 0.3, outcol = col[as.factor(yy$samples$group)],labels = colnames(yy.logcpm), main = "D. TMM offset-normalised strictly filtered data", ylab = "SgRNA representation (log2 cpm normalised reads)")
+legend("topleft", legend = levels(factor(yy$samples$group)), col = col, pch = 19, cex = 0.5)
+dev.off()
 ```
 
-## MDS plots{-}
+## Unsupervised clustering of samples {-}
+A Multi-dimensional Scaling (MDS) plot visually depicts the similarities and differences among samples in an unsupervised manner, providing a preliminary understanding of the potential for identifying differential abundance before formal testing. The leading fold-change is conventionally defined as the root-mean-square of the largest 500 log2-fold changes between sample pairs.
 
-```{r mds plot normalisation}
+For this purpose, we utilize the `plotMDS` function from the `limma` package. It's worth noting that loading the `limma` package is redundant, as `edgeR` already includes and invokes its functions.
+
+```{r mds plot normalization, fig.height=8, fig.width=8}
+lcpm <- cpm(yy.norm, log=TRUE)
 cols <- col
-plotMDS(yy.norm, col=cols[factor(yy.norm$samples$group)], main="MDS plot before normalisation", pch = 16, cex = 2)
+plotMDS(lcpm, col=cols[factor(yy.norm$samples$group)], main="MDS plot of permissevly filtered and TMM offset-normalised data", pch = 16, cex = 2)
 legend("bottomright", legend=levels(factor(yy.norm$samples$group)), col = cols, pch = 16, cex=0.8)
 ```
 
+We can see that the biological replicates of control and treated samples cluster well within the groups over dimension 1 and 2. The first dimension accounts for largest variability in the data. Then the larger the dimension, the lower the variation is. While samples exhibit grouping tendencies, there are significant abundance distinctions between control and treated samples. Consequently, we anticipate that when performing pairwise comparisons among control and treated samples, there will be a higher count of differentially abundant guides in comparisons.
+
+## Visualise guide abundance profiles of samples{-}
+A more detailed exploration of the normalization procedure applied to individual samples can be accomplished using mean-difference (MD) plots. In an MD plot, the library size-adjusted log-fold change between two libraries (the difference) is graphed against the average log-expression across those libraries (the mean). It is a good practice to look at MD plots for all samples for a quality check. We use `plotMD` from `edgeR` package to do that.
+```{r volcano, fig.width=10, fig.height=15}
+par(mfrow=c(3,2))
+for(i in 1:6){
+  plotMD(yy, column=i)
+  abline(h=0, col="red", lty=2, lwd=2)
+}
+dev.off()
+```
+
+If the bulk of the counts are centered around the line of zero log-fold change. The diagonal lines in the  lower left of the plot correspond to genes with counts of 0, 1, 2 and so on in the first sample.
+
+For a good quality, we expect he majority of the counts to be concentrated near the zero log-fold change line. However, this is hardly ever the case for CRISPR experiments due to the sparse nature of CRISPR screen counts. The diagonal lines in the lower-left portion of the plot correspond to guides with counts of very low numbers. And it is typical for treated samples to observe a positive skew, with a number of very highly upregulated guides in the upper right of the plots. These points correspond to  the guides that are both highly abundant and highly up-regulated in the given sample compared to others. Especially ToxB samples are more positively skewed than ToxA samples. These guides also explain why the normalization factor for ToxB samples were well below one before adding an offset. By contrast, the log-ratios for control samples were somewhat negatively skewed,  corresponding to their normalization factor above one.
+Although we used TMM normalization with an added offset to the counts, a more specialized normalization methods are needed for accurate CRISPR screen analyses.
+
 # Differential abundance analysis at guide level{-}
-## Create a design matrix{-}
+Differential abundance analysis in the context of CRISPR typically refers to the identification of significant differences in the abundance of sgRNAs between different experimental conditions or sample groups. Empirical analysis of Digital Gene Expression `edgeR` is one of the most widely used Bioconductor packages designed for the analysis of differential gene expression in RNA-seq data.
+
+Here, we harness the robust capabilities of edgeR for differential expression analysis to precisely identify those sgRNAs that have a significant impact on the phenotype under investigation. 
+
+edgeR offers two distinct pipelines: the classic edgeR and the glm (generalized linear model) edgeR.
+
+**1. Classic edgeR:** This pipelin is based on `exactTest` function and it can be used when there is no biological replicates in any condition.
+
+**2. edgeR glm (Generalized Linear Model):** This pipeline splits into two distinct approaches with stricter error rate than classic edgeR:
+
+**a. edgeR glmLRT (Generalized Linear Model Likelihood Ratio Test):** This approach relies on negative binomial generalized linear models, and the test employed is the Likelihood Ratio Test. This method ensures a more stringent control over the error rate compared to classic edgeR.
+
+**b. edgeR quasi glmQLFTest (Generalized Linear Model Quasi-Likelihood F-test):** In this statistical methodology, negative binomial generalized linear models are employed, featuring F-tests instead of likelihood ratio tests. This pipeline is also controls the error rate better than classic edgeR, additionally edgeR-quasi excels in low-count situations.
+
+## Create the design matrix{-}
+For further statistical modeling using edgeR, we now need to define a design matrix containing the factors in the experiment. 
 ```{r design}
 design <- model.matrix(~group, data = yy.norm$samples)
 design
 ```
 
-## Biological variation{-}
+## Fit a model when there is no biological replicates{-}
+While it's generally advisable to include biological replicates in experimental designs for statistical rigor and robust conclusions, there may be situations in CRISPR screens where researchers choose not to include them initially, especially in exploratory phases. The decision often involves a trade-off between the depth of analysis and the available resources. However, as the study progresses and findings are prioritized, additional experiments with biological replicates are often conducted to validate and strengthen the results. In instances where biological replicates are unavailable, they are not ideal but classic edgeR provides two alternative solutions: one involves the `exactTest`, and the other employs the Generalized Linear Model Likelihood Ratio Test (`glmLRT`). In such scenarios, a crucial step is to determine a sensible estimate for common Biological Coefficient of Variation (BCV). However, the p-values will heavily depend on the initial BCV estimate. This BCV estimate is utilized and the statistical model is conducted as follows:
+
+### Classic edgeR{-}
+Here we subset only one biological replicate of each condition.
+```{r no biorep exact test, fig.height=5, fig.width=10}
+bcv <- 0.6
+yy.norm.no_biorep <- DGEList(counts = yy.norm$counts[,c(2,4,6)], samples= yy.norm$samples[c(2,4,6),], genes = yy.norm$genes)
+et.toxb <- exactTest(yy.norm.no_biorep, dispersion=bcv^2,pair = c(1,3))
+et.toxa <- exactTest(yy.norm.no_biorep, dispersion=bcv^2,pair = c(1,2))
+head(topTags(et.toxb,n=Inf))
+par(mfrow=c(1,2))
+plotMD(et.toxb)
+plotMD(et.toxa)
+dev.off()
+write.csv(et.toxa, file = paste0("./tables/",Sys.Date(),"Classic_edgeR-ToxAvsCtrl-DE-sgRNAs.csv"))
+write.csv(et.toxb, file = paste0("./tables/",Sys.Date(),"Classic_edgeR-ToxBvsCtrl-DE-sgRNAs.csv"))
+```
+
+### edgeR glmLRT{-}
+```{r no biorep glm, fig.height=5, fig.width=10}
+par(mfrow=c(1,2))
+fit <- glmFit(yy.norm.no_biorep, dispersion=bcv^2)
+lrt.toxa <- glmLRT(fit, coef = "y$samples$groupToxA")
+lrt.toxb <- glmLRT(fit, coef = "y$samples$groupToxB")
+topTags(lrt.toxa)
+topTags(lrt.toxb)
+plotMD(lrt.toxa, main="ToxA vs Control")
+abline(h=c(-3, 3), col="blue")
+plotMD(lrt.toxb, main="ToxB vs Control")
+abline(h=c(-3, 3), col="blue")
+dev.off()
+lrt.toxa$table$Symbol <- lrt.toxa$genes$Symbol
+lrt.toxb$table$Symbol <- lrt.toxb$genes$Symbol
+write.csv(lrt.toxa$table, file = paste0("./tables/",Sys.Date(),"edgeR_glmLRT-ToxAvsCtrl-DE-sgRNAs.csv"))
+write.csv(lrt.toxb$table, file = paste0("./tables/",Sys.Date(),"edgeR_glmLRT-ToxBvsCtrl-DE-sgRNAs.csv"))
+datatable(format(lrt.toxa$table[order(lrt.toxb$table$PValue, decreasing = FALSE),],format="e", digits=3))
+datatable(format(lrt.toxb$table[order(lrt.toxb$table$PValue, decreasing = FALSE),],format="e", digits=3))
+```
+
+## Fit a model when there are biological replicates{-}
+When there are a minimum of two biological replicates for each condition under consideration, the edgeR glm method performs better than classic edgeR in CRISPR experiments. To employ edgeR glm, it's essential to estimate the dispersion parameter of the negative binomial (NB) distribution. This parameter is crucial as it accommodates the variability observed between biological replicates.
+
+
+### Dispersion estimates and biological variation{-}
+These estimates can be visualized with `plotBCV` function from `edgeR`.
 ```{r bcv}
 yy.norm <- estimateDisp(yy.norm, design)
+yy.norm$common.dispersion
+bcv <- sqrt(yy.norm$common.dispersion)
+bcv
 plotBCV(yy.norm)
 ```
+BCV is computed as the square root of common dispersion, which is 0.8 (larger than 0.3) in this experiment. This is high considering that genetically identical cells are used to deign the experiment. The trended dispersion shows that when the abundance gets higher, the variation decreases. At low logCPM, the dispersion is very large. 
 
-## Fit a statistical model{-}
-```{r dea}
+### edgeR glmLRT{-}
+```{r dea glmLRT}
 fit <- glmFit(yy.norm, design)
 lrt <- glmLRT(fit, coef = "groupToxA")
-topToxAvsCtrl.all <- topTags(lrt, n = Inf, sort.by = "PValue")$table
-topToxAvsCtrl <- topTags(lrt, n = Inf, sort.by = "PValue")$table
-dim(topToxAvsCtrl <- topToxAvsCtrl[topToxAvsCtrl$FDR < 0.05,])
-topToxAvsCtrl$sgRNA <- rownames(topToxAvsCtrl)
-topToxAvsCtrl$Gene_Regulation[topToxAvsCtrl$logFC >= 0] <- "Enriched in ToxA"
-topToxAvsCtrl$Gene_Regulation[topToxAvsCtrl$logFC < 0] <- "Depleted in ToxA"
-head(topToxAvsCtrl <- topToxAvsCtrl[topToxAvsCtrl$Symbol %in% alias2Symbol(topToxAvsCtrl$Symbol),])
-datatable(format(topToxAvsCtrl <- topToxAvsCtrl[order(topToxAvsCtrl$FDR, decreasing = FALSE),c(-2,-3)],format="e", digits=3))
-dir.create("tables")
-write.csv(topToxAvsCtrl, file = paste0("./tables/",Sys.Date(),"-ToxAvsCtrl-DE-sgRNAs-GGiner.csv"))
+lrt2.toxa <- topTags(lrt, n = Inf, sort.by = "PValue")$table
+lrt <- glmLRT(fit, coef = "groupToxB")
+lrt2.toxb <- topTags(lrt, n = Inf, sort.by = "PValue")$table
+datatable(format(lrt2.toxa[order(lrt2.toxa$FDR, decreasing = FALSE),],format="e", digits=3))
+write.csv(lrt2.toxa, file = paste0("./tables/",Sys.Date(),"-edgeR_glmLRT-with_biorep-ToxAvsCtrl-DE-sgRNAs.csv"))
+write.csv(lrt2.toxb, file = paste0("./tables/",Sys.Date(),"-edgeR_glmLRT-with_biorep-ToxBvsCtrl-DE-sgRNAs.csv"))
+```
+### edgeR quasi{-}
+Both edgeR glm and edgeR quasi are viable options. So next we will  continue analyzing the given example using edgeR quasi. It's important to note that, under the quasi-likelihood (QL) pipeline, only the trended dispersion is utilized, not The tagwise and common estimates. The QL dispersions can be estimated by utilizing the `glmQLFit` function and subsequently visualized using the `plotQLDisp` function. Also note that the results of this pipeline can be quite conservative and as shown below, there mey be only a few or no significant hit can be detected.
+
+Both edgeR glm and edgeR quasi are feasible choices. Therefore, we will proceed with the analysis of the provided example using edgeR quasi. It's crucial to highlight that, within the quasi-likelihood (QL) pipeline, only the trended dispersion is employed, not the tagwise and common estimates. The QL dispersions can be estimated using the `glmQLFit` function and visualized through the `plotQLDisp` function. A graphical representation with `plotQLDisp` below depicts the quarter-root QL dispersion plotted against the average abundance of each gene. The estimates are presented for the raw dispersions (pre-empirical Bayes moderation), trended dispersions, and squeezed dispersions (post-empirical Bayes moderation). Additionally, it's worth noting that the outcomes of this pipeline can be conservative, as demonstrated below, where only a few or no significant hits may be detected.
+```{r edger quasi}
+fit <- glmQLFit(yy.norm, design, robust=TRUE)
+plotQLDisp(fit)
+qlf.toxa <- glmQLFTest(fit, coef = "groupToxA")
+qlf2.toxa <- topTags(qlf.toxa, n = Inf, sort.by = "PValue")$table
+datatable(format(qlf2.toxa[order(qlf2.toxa$FDR, decreasing = FALSE),],format="e", digits=3))
+write.csv(qlf.toxa, file = paste0("./tables/",Sys.Date(),"-edgeR_glmQLF-with_biorep-ToxAvsCtrl-DE-sgRNAs.csv"))
+qlf.toxb <- glmQLFTest(fit, coef = "groupToxB")
+qlf2.toxb <- topTags(qlf.toxb, n = Inf, sort.by = "PValue")$table
+datatable(format(qlf2.toxb[order(qlf2.toxb$FDR, decreasing = FALSE),],format="e", digits=3))
+write.csv(qlf.toxb, file = paste0("./tables/",Sys.Date(),"-edgeR_glmQLF-with_biorep-ToxBvsCtrl-DE-sgRNAs.csv"))
 ```
 
-## Visualise hit guides{-}
-A volcano plot is a scatter plot that visualizes the differential abundance of guides. The fold change is typically displayed on the x-axis, while the y-axis represents the corresponding p-values. The significantly differentially abundant genes are the ones found in the upper-left and upper-right corners.
-```{r volcano of guides, fig.height=8, fig.width=10}
+# Visualise hit guides{-}
+A volcano plot is a scatter plot that visualizes the differential abundance of guides. The fold change is typically displayed on the x-axis, while the y-axis represents the corresponding p-values. The significantly differentially abundant genes are the ones found in the upper-left and upper-right corners. Below we visualise the hits for ToxA vs Control and ToxB vs Control samples, respectively.
+
+## Volcano plot (ToxA vs Control){-}
+```{r volcano of guides toxa, fig.height=8, fig.width=10}
 # remove rows that contain NA values
-de <- topToxAvsCtrl.all[complete.cases(topToxAvsCtrl.all), ]
+de <- lrt2.toxa[complete.cases(lrt2.toxa), ]
 colnames(de)[colnames(de)=="logFC"] <- "log2FoldChange"
 colnames(de)[colnames(de)=="PValue"] <- "pvalue"
 colnames(de)[colnames(de)=="Symbol"] <- "gene_symbol"
@@ -321,14 +511,37 @@ de$diffabundant[de$log2FoldChange < -5 & de$log2FoldChange >= 5 & de$adjusted_pv
 de$diffabundant[de$log2FoldChange >= 5 & de$adjusted_pvalue <= 0.05] <- "Up"
 de$diffabundant[de$log2FoldChange < -5 & de$adjusted_pvalue <= 0.05] <- "Down"
 head(de)
-
-# Finally, we can organize the labels nicely using the "ggrepel" package and the geom_text_repel() function
 g_down <- which(de$log2FoldChange > 5 & de$adjusted_pvalue <= 0.05)
 g_up <- which(de$log2FoldChange < -5 & de$adjusted_pvalue <= 0.05)
 de$delabel<- NA
 de$delabel[c(g_down[1:20],g_up[1:20])] <- de$gene_symbol[c(g_down[1:20],g_up[1:20])]
+ggplot(data=de, aes(x=log2FoldChange, y=-log10(adjusted_pvalue), col=diffabundant, label=delabel)) +
+        geom_point() + 
+        theme_minimal() +
+        geom_text_repel(max.overlaps=Inf) +
+        scale_color_manual(values=c("blue", "black", "gray", "red"))+
+        geom_vline(xintercept=c(-5, 5), col="darkred") +
+        geom_hline(yintercept=-log10(0.05), col="darkred")
+```
 
-# plot adding up all layers we have seen so far
+## Volcano plot (ToxB vs Control){-}
+```{r volcano of guides toxb, fig.height=8, fig.width=10}
+# remove rows that contain NA values
+de <- lrt2.toxb[complete.cases(lrt2.toxb), ]
+colnames(de)[colnames(de)=="logFC"] <- "log2FoldChange"
+colnames(de)[colnames(de)=="PValue"] <- "pvalue"
+colnames(de)[colnames(de)=="Symbol"] <- "gene_symbol"
+colnames(de)[colnames(de)=="FDR"] <- "adjusted_pvalue"
+de$diffabundant <- "Pass p-value cuttoff"
+de$diffabundant[de$adjusted_pvalue > 0.05] <- "Not Significant"
+de$diffabundant[de$log2FoldChange < -5 & de$log2FoldChange >= 5 & de$adjusted_pvalue < 0.05] <- "Pass p-value & Log2FC cuttoff"
+de$diffabundant[de$log2FoldChange >= 5 & de$adjusted_pvalue <= 0.05] <- "Up"
+de$diffabundant[de$log2FoldChange < -5 & de$adjusted_pvalue <= 0.05] <- "Down"
+head(de)
+g_down <- which(de$log2FoldChange > 5 & de$adjusted_pvalue <= 0.05)
+g_up <- which(de$log2FoldChange < -5 & de$adjusted_pvalue <= 0.05)
+de$delabel<- NA
+de$delabel[c(g_down[1:20],g_up[1:20])] <- de$gene_symbol[c(g_down[1:20],g_up[1:20])]
 ggplot(data=de, aes(x=log2FoldChange, y=-log10(adjusted_pvalue), col=diffabundant, label=delabel)) +
         geom_point() + 
         theme_minimal() +
@@ -339,7 +552,8 @@ ggplot(data=de, aes(x=log2FoldChange, y=-log10(adjusted_pvalue), col=diffabundan
 ```
 
 # Differential abundance analysis at gene level{-}
-```{r de genes}
+## ToxA vs Control{-}
+```{r de genes toxa}
 # Create a list of genes with sgRNA indices to use in fry test index argument
 genesymbols <- yy.norm$genes[,1]
 genesymbollist <- list()
@@ -354,5 +568,19 @@ fry.res <- fry(yy.norm, index=genesymbollist, design, contrast="groupToxA")
 datatable(format(fry.res,format="e", digits=3))
 ```
 
+## ToxB vs Control{-}
+```{r de genes toxb}
+genesymbols <- yy.norm$genes[,1]
+genesymbollist <- list()
+unq <- unique(genesymbols)
+unq <- unq[!is.na(unq)]
+for(i in unq) {
+  sel <- genesymbols==i & !is.na(genesymbols)
+  if(sum(sel)>3) genesymbollist[[i]] <- which(sel)
+}
+
+fry.res <- fry(yy.norm, index=genesymbollist, design, contrast="groupToxB")
+datatable(format(fry.res,format="e", digits=3))
+```
 
 

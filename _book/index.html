@@ -29,7 +29,7 @@ The HTML output format for this example is bookdown::gitbook,</p>" />
 <meta name="author" content="Göknur Giner" />
 
 
-<meta name="date" content="2023-10-11" />
+<meta name="date" content="2023-10-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -151,52 +151,69 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">A Minimal Book Example</a></li>
+<li><a href="./">Analysing-CRISPR-screens-with-edgeR</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a>
-<ul>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#what-you-will-learn"><i class="fa fa-check"></i>What You Will Learn</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#what-you-wont-learn"><i class="fa fa-check"></i>What You Won’t Learn</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-we-wrote-this-for"><i class="fa fa-check"></i>Who We Wrote This For</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#why-we-wrote-this"><i class="fa fa-check"></i>Why We Wrote This</a></li>
-</ul></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
 <li class="chapter" data-level="" data-path="setting-up.html"><a href="setting-up.html"><i class="fa fa-check"></i>Setting up</a>
 <ul>
 <li class="chapter" data-level="" data-path="setting-up.html"><a href="setting-up.html#install-r"><i class="fa fa-check"></i>Install R</a></li>
 <li class="chapter" data-level="" data-path="setting-up.html"><a href="setting-up.html#install-rstudio"><i class="fa fa-check"></i>Install RStudio</a></li>
 <li class="chapter" data-level="" data-path="setting-up.html"><a href="setting-up.html#install-required-packages"><i class="fa fa-check"></i>Install required packages</a></li>
 <li class="chapter" data-level="" data-path="setting-up.html"><a href="setting-up.html#load-required-packages"><i class="fa fa-check"></i>Load required packages</a></li>
-<li class="chapter" data-level="" data-path="setting-up.html"><a href="setting-up.html#download-the-material-used-in-this-book"><i class="fa fa-check"></i>Download the material used in this book</a></li>
+<li class="chapter" data-level="" data-path="setting-up.html"><a href="setting-up.html#download-the-material"><i class="fa fa-check"></i>Download the material</a></li>
+<li class="chapter" data-level="" data-path="setting-up.html"><a href="setting-up.html#create-necessary-directories"><i class="fa fa-check"></i>Create necessary directories</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="counting-the-sgrnas-with-rsubread.html"><a href="counting-the-sgrnas-with-rsubread.html"><i class="fa fa-check"></i>Counting the sgRNAs with RSubread</a>
 <ul>
-<li class="chapter" data-level="" data-path="counting-the-sgrnas-with-rsubread.html"><a href="counting-the-sgrnas-with-rsubread.html#building-an-index"><i class="fa fa-check"></i>Building an index</a></li>
-<li class="chapter" data-level="" data-path="counting-the-sgrnas-with-rsubread.html"><a href="counting-the-sgrnas-with-rsubread.html#aligning-the-fastq-files"><i class="fa fa-check"></i>Aligning the fastq files</a></li>
-<li class="chapter" data-level="" data-path="counting-the-sgrnas-with-rsubread.html"><a href="counting-the-sgrnas-with-rsubread.html#creating-a-dgelist-object"><i class="fa fa-check"></i>Creating a DGEList object</a></li>
+<li class="chapter" data-level="" data-path="counting-the-sgrnas-with-rsubread.html"><a href="counting-the-sgrnas-with-rsubread.html#build-an-index"><i class="fa fa-check"></i>Build an index</a></li>
+<li class="chapter" data-level="" data-path="counting-the-sgrnas-with-rsubread.html"><a href="counting-the-sgrnas-with-rsubread.html#align-the-fastq-files"><i class="fa fa-check"></i>Align the FASTQ files</a></li>
+<li class="chapter" data-level="" data-path="counting-the-sgrnas-with-rsubread.html"><a href="counting-the-sgrnas-with-rsubread.html#create-a-dgelist-object"><i class="fa fa-check"></i>Create a DGEList object</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="preprocessing-the-data.html"><a href="preprocessing-the-data.html"><i class="fa fa-check"></i>Preprocessing the data</a>
 <ul>
-<li class="chapter" data-level="" data-path="preprocessing-the-data.html"><a href="preprocessing-the-data.html#guide-distribution-across-samples"><i class="fa fa-check"></i>Guide distribution across samples</a></li>
-<li class="chapter" data-level="" data-path="preprocessing-the-data.html"><a href="preprocessing-the-data.html#gini-indices"><i class="fa fa-check"></i>Gini indices</a></li>
-<li class="chapter" data-level="" data-path="preprocessing-the-data.html"><a href="preprocessing-the-data.html#library-sizes-by-group"><i class="fa fa-check"></i>Library sizes by group</a></li>
-<li class="chapter" data-level="" data-path="preprocessing-the-data.html"><a href="preprocessing-the-data.html#removing-lowly-expressed-guides"><i class="fa fa-check"></i>Removing lowly expressed guides</a>
+<li class="chapter" data-level="" data-path="preprocessing-the-data.html"><a href="preprocessing-the-data.html#remove-control-guides"><i class="fa fa-check"></i>Remove control guides</a></li>
+<li class="chapter" data-level="" data-path="preprocessing-the-data.html"><a href="preprocessing-the-data.html#check-guide-distribution"><i class="fa fa-check"></i>Check guide distribution</a></li>
+<li class="chapter" data-level="" data-path="preprocessing-the-data.html"><a href="preprocessing-the-data.html#evaluate-the-uniformity"><i class="fa fa-check"></i>Evaluate the uniformity</a></li>
+<li class="chapter" data-level="" data-path="preprocessing-the-data.html"><a href="preprocessing-the-data.html#remove-lowly-expressed-guides"><i class="fa fa-check"></i>Remove lowly expressed guides</a>
 <ul>
-<li class="chapter" data-level="0.0.1" data-path="preprocessing-the-data.html"><a href="preprocessing-the-data.html#remove-non-targeting-guides"><i class="fa fa-check"></i><b>0.0.1</b> Remove Non-targeting guides</a></li>
 <li class="chapter" data-level="" data-path="preprocessing-the-data.html"><a href="preprocessing-the-data.html#strict-filtering"><i class="fa fa-check"></i>Strict filtering</a></li>
 <li class="chapter" data-level="" data-path="preprocessing-the-data.html"><a href="preprocessing-the-data.html#permissive-filtering"><i class="fa fa-check"></i>Permissive filtering</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="preprocessing-the-data.html"><a href="preprocessing-the-data.html#normalising-the-sgrna-counts"><i class="fa fa-check"></i>Normalising the sgRNA counts</a></li>
-<li class="chapter" data-level="" data-path="preprocessing-the-data.html"><a href="preprocessing-the-data.html#mds-plots"><i class="fa fa-check"></i>MDS plots</a></li>
+<li class="chapter" data-level="" data-path="preprocessing-the-data.html"><a href="preprocessing-the-data.html#look-at-density-plots"><i class="fa fa-check"></i>Look at density plots</a></li>
+<li class="chapter" data-level="" data-path="preprocessing-the-data.html"><a href="preprocessing-the-data.html#normalise-the-counts"><i class="fa fa-check"></i>Normalise the counts</a>
+<ul>
+<li class="chapter" data-level="" data-path="preprocessing-the-data.html"><a href="preprocessing-the-data.html#cpm-normalised-counts"><i class="fa fa-check"></i>CPM normalised counts</a></li>
+<li class="chapter" data-level="" data-path="preprocessing-the-data.html"><a href="preprocessing-the-data.html#tmm-normalised-counts"><i class="fa fa-check"></i>TMM normalised counts</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="preprocessing-the-data.html"><a href="preprocessing-the-data.html#unsupervised-clustering-of-samples"><i class="fa fa-check"></i>Unsupervised clustering of samples</a></li>
+<li class="chapter" data-level="" data-path="preprocessing-the-data.html"><a href="preprocessing-the-data.html#visualise-guide-abundance-profiles-of-samples"><i class="fa fa-check"></i>Visualise guide abundance profiles of samples</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="differential-abundance-analysis-at-guide-level.html"><a href="differential-abundance-analysis-at-guide-level.html"><i class="fa fa-check"></i>Differential abundance analysis at guide level</a>
 <ul>
-<li class="chapter" data-level="" data-path="differential-abundance-analysis-at-guide-level.html"><a href="differential-abundance-analysis-at-guide-level.html#create-a-design-matrix"><i class="fa fa-check"></i>Create a design matrix</a></li>
-<li class="chapter" data-level="" data-path="differential-abundance-analysis-at-guide-level.html"><a href="differential-abundance-analysis-at-guide-level.html#biological-variation"><i class="fa fa-check"></i>Biological variation</a></li>
-<li class="chapter" data-level="" data-path="differential-abundance-analysis-at-guide-level.html"><a href="differential-abundance-analysis-at-guide-level.html#fit-a-statistical-model"><i class="fa fa-check"></i>Fit a statistical model</a></li>
-<li class="chapter" data-level="" data-path="differential-abundance-analysis-at-guide-level.html"><a href="differential-abundance-analysis-at-guide-level.html#visualise-hit-guides"><i class="fa fa-check"></i>Visualise hit guides</a></li>
+<li class="chapter" data-level="" data-path="differential-abundance-analysis-at-guide-level.html"><a href="differential-abundance-analysis-at-guide-level.html#create-the-design-matrix"><i class="fa fa-check"></i>Create the design matrix</a></li>
+<li class="chapter" data-level="" data-path="differential-abundance-analysis-at-guide-level.html"><a href="differential-abundance-analysis-at-guide-level.html#fit-a-model-when-there-is-no-biological-replicates"><i class="fa fa-check"></i>Fit a model when there is no biological replicates</a>
+<ul>
+<li class="chapter" data-level="" data-path="differential-abundance-analysis-at-guide-level.html"><a href="differential-abundance-analysis-at-guide-level.html#classic-edger"><i class="fa fa-check"></i>Classic edgeR</a></li>
+<li class="chapter" data-level="" data-path="differential-abundance-analysis-at-guide-level.html"><a href="differential-abundance-analysis-at-guide-level.html#edger-glmlrt"><i class="fa fa-check"></i>edgeR glmLRT</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="differential-abundance-analysis-at-gene-level.html"><a href="differential-abundance-analysis-at-gene-level.html"><i class="fa fa-check"></i>Differential abundance analysis at gene level</a></li>
+<li class="chapter" data-level="" data-path="differential-abundance-analysis-at-guide-level.html"><a href="differential-abundance-analysis-at-guide-level.html#fit-a-model-when-there-are-biological-replicates"><i class="fa fa-check"></i>Fit a model when there are biological replicates</a>
+<ul>
+<li class="chapter" data-level="" data-path="differential-abundance-analysis-at-guide-level.html"><a href="differential-abundance-analysis-at-guide-level.html#dispersion-estimates-and-biological-variation"><i class="fa fa-check"></i>Dispersion estimates and biological variation</a></li>
+<li class="chapter" data-level="" data-path="differential-abundance-analysis-at-guide-level.html"><a href="differential-abundance-analysis-at-guide-level.html#edger-glmlrt-1"><i class="fa fa-check"></i>edgeR glmLRT</a></li>
+<li class="chapter" data-level="" data-path="differential-abundance-analysis-at-guide-level.html"><a href="differential-abundance-analysis-at-guide-level.html#edger-quasi"><i class="fa fa-check"></i>edgeR quasi</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="visualise-hit-guides.html"><a href="visualise-hit-guides.html"><i class="fa fa-check"></i>Visualise hit guides</a>
+<ul>
+<li class="chapter" data-level="" data-path="visualise-hit-guides.html"><a href="visualise-hit-guides.html#volcano-plot-toxa-vs-control"><i class="fa fa-check"></i>Volcano plot (ToxA vs Control)</a></li>
+<li class="chapter" data-level="" data-path="visualise-hit-guides.html"><a href="visualise-hit-guides.html#volcano-plot-toxb-vs-control"><i class="fa fa-check"></i>Volcano plot (ToxB vs Control)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="differential-abundance-analysis-at-gene-level.html"><a href="differential-abundance-analysis-at-gene-level.html"><i class="fa fa-check"></i>Differential abundance analysis at gene level</a>
+<ul>
+<li class="chapter" data-level="" data-path="differential-abundance-analysis-at-gene-level.html"><a href="differential-abundance-analysis-at-gene-level.html#toxa-vs-control"><i class="fa fa-check"></i>ToxA vs Control</a></li>
+<li class="chapter" data-level="" data-path="differential-abundance-analysis-at-gene-level.html"><a href="differential-abundance-analysis-at-gene-level.html#toxb-vs-control"><i class="fa fa-check"></i>ToxB vs Control</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -220,29 +237,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Analysing CRISPR Screens with edgeR</h1>
 <p class="author"><em>Göknur Giner</em></p>
-<p class="date"><em>2023-10-11</em></p>
+<p class="date"><em>2023-10-15</em></p>
 </div>
 <div id="welcome" class="section level1 unnumbered hasAnchor">
 <h1>Welcome<a href="index.html#welcome" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Welcome to the home of “Analyzing CRISPR Screens with edgeR”. This platform serves as the central hub for a comprehensive guide on leveraging one of the most commonly used differential expression analysis Bioconductor package edgeR, for the analysis of CRISPR screens. Whether you’re delving into CRISPR experiments for the first time or seeking advanced insights, this guide will equip you with essential skills and knowledge to extract meaningful information from your data.</p>
-<div id="what-you-will-learn" class="section level2 unnumbered hasAnchor">
-<h2>What You Will Learn<a href="index.html#what-you-will-learn" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Our mission is to provide you with a robust foundation in the analysis of CRISPR data using edgeR. Throughout this guide, we walk you through various steps of typical workflows using example data sets to check the quality of sequencing data, count the single guide RNAs (sgRNAs), process, analyze, visualize, and explore the differential abundance of the sgRNAs and related the pathways. By doing so, we address key concepts and methodologies, ensuring a deep understanding of the intricacies involved in CRISPR data analysis.</p>
-</div>
-<div id="what-you-wont-learn" class="section level2 unnumbered hasAnchor">
-<h2>What You Won’t Learn<a href="index.html#what-you-wont-learn" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The landscape of CRISPR data analysis is vast and diverse. In this guide, we focus on specific tool—edgeR provided by Bioconductor. While we aim to cover edgeR comprehensively, it’s important to note that the realm of bioinformatic analysis offers numerous possibilities, depending on the experimental setup and biological system. Our guide provides a starting point for your exploration, acknowledging the richness of available tools beyond the scope of this book.</p>
-<p>Recognize that your specific data may require a tailored approach, and our examples serve as templates rather than one-size-fits-all solutions. We encourage you to view them as a foundation upon which you can build and adapt for your unique analyses.</p>
-</div>
-<div id="who-we-wrote-this-for" class="section level2 unnumbered hasAnchor">
-<h2>Who We Wrote This For<a href="index.html#who-we-wrote-this-for" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Welcome to the “Analyzing CRISPR Screens with edgeR”. Our aim is to empower researchers like you with the tools and knowledge needed to navigate the complex landscape of CRISPR data analysis.</p>
+<p>This platform serves as the central hub for a comprehensive guide on leveraging one of the most commonly used differential expression analysis Bioconductor package edgeR, for the analysis of CRISPR screens. Whether you’re delving into CRISPR experiments for the first time or seeking advanced insights, this guide will equip you with essential skills and knowledge to extract meaningful information from your data using powerful and robust statistical methods presented in edgeR.</p>
+<p>Here we provide you with a robust foundation in the analysis of CRISPR data using edgeR. Throughout this guide, we walk you through various steps of typical CRISPR analysis workflows using example data set to count the single guide RNAs (sgRNAs) from your sequencing files (fastq, etc.), pre-process the count matrices (filtering, normalising, etc.), fit a statistical model to identify the hit guides, genes and pathways, and visualize the results.</p>
 <p>This guide is crafted with both novice and experienced researchers in mind. Whether you’re an experimental biologist stepping into the realm of CRISPR data or a seasoned bioinformatician seeking insights into edgeR in the context of CRISPR gene editing, you’ll find valuable content here. We make minimal assumptions about your previous programming or statistical experience, aiming to create a resource that is accessible to a broad audience.</p>
 <p>We welcome feedback from all users to improve this guide continually, enhancing accessibility and refining technical details. Your input is instrumental in making this resource more valuable to the community.</p>
-</div>
-<div id="why-we-wrote-this" class="section level2 unnumbered hasAnchor">
-<h2>Why We Wrote This<a href="index.html#why-we-wrote-this" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The inception of this guide dates back to the recognition of the growing prominence of CRISPR data analysis within the field of biology. As CRISPR experiments evolved, so did the need for specialized tools. In response, we embarked on creating a guide that not only showcases the capabilities of edgeR but also celebrates the Bioconductor community’s contributions to advancing the field of biological analysis. Our aim is to empower researchers like you with the tools and knowledge needed to navigate the complex landscape of CRISPR data analysis.</p>
-</div>
 </div>
             </section>
 
@@ -281,7 +284,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/index.Rmd",
+"link": "https://github.com/goknurginer/Analysing-CRISPR-screens-with-edgeRindex.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -292,7 +295,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"download": ["Analysing-CRISPR-screens-with-edgeR.pdf", "Analysing-CRISPR-screens-with-edgeR.epub"],
 "search": {
 "engine": "fuse",
 "options": null
@@ -304,6 +307,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

@@ -1,4 +1,4 @@
-book_filename: "bookdown-demo"
+book_filename: "Analysing-CRISPR-screens-with-edgeR"
 language:
   ui:
     chapter_name: "Chapter "

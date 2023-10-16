@@ -29,7 +29,7 @@ The HTML output format for this example is bookdown::gitbook,</p>" />
 <meta name="author" content="Göknur Giner" />
 
 
-<meta name="date" content="2023-10-11" />
+<meta name="date" content="2023-10-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -151,52 +151,69 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">A Minimal Book Example</a></li>
+<li><a href="./">Analysing-CRISPR-screens-with-edgeR</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a>
-<ul>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#what-you-will-learn"><i class="fa fa-check"></i>What You Will Learn</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#what-you-wont-learn"><i class="fa fa-check"></i>What You Won’t Learn</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-we-wrote-this-for"><i class="fa fa-check"></i>Who We Wrote This For</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#why-we-wrote-this"><i class="fa fa-check"></i>Why We Wrote This</a></li>
-</ul></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
 <li class="chapter" data-level="" data-path="setting-up.html"><a href="setting-up.html"><i class="fa fa-check"></i>Setting up</a>
 <ul>
 <li class="chapter" data-level="" data-path="setting-up.html"><a href="setting-up.html#install-r"><i class="fa fa-check"></i>Install R</a></li>
 <li class="chapter" data-level="" data-path="setting-up.html"><a href="setting-up.html#install-rstudio"><i class="fa fa-check"></i>Install RStudio</a></li>
 <li class="chapter" data-level="" data-path="setting-up.html"><a href="setting-up.html#install-required-packages"><i class="fa fa-check"></i>Install required packages</a></li>
 <li class="chapter" data-level="" data-path="setting-up.html"><a href="setting-up.html#load-required-packages"><i class="fa fa-check"></i>Load required packages</a></li>
-<li class="chapter" data-level="" data-path="setting-up.html"><a href="setting-up.html#download-the-material-used-in-this-book"><i class="fa fa-check"></i>Download the material used in this book</a></li>
+<li class="chapter" data-level="" data-path="setting-up.html"><a href="setting-up.html#download-the-material"><i class="fa fa-check"></i>Download the material</a></li>
+<li class="chapter" data-level="" data-path="setting-up.html"><a href="setting-up.html#create-necessary-directories"><i class="fa fa-check"></i>Create necessary directories</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="counting-the-sgrnas-with-rsubread.html"><a href="counting-the-sgrnas-with-rsubread.html"><i class="fa fa-check"></i>Counting the sgRNAs with RSubread</a>
 <ul>
-<li class="chapter" data-level="" data-path="counting-the-sgrnas-with-rsubread.html"><a href="counting-the-sgrnas-with-rsubread.html#building-an-index"><i class="fa fa-check"></i>Building an index</a></li>
-<li class="chapter" data-level="" data-path="counting-the-sgrnas-with-rsubread.html"><a href="counting-the-sgrnas-with-rsubread.html#aligning-the-fastq-files"><i class="fa fa-check"></i>Aligning the fastq files</a></li>
-<li class="chapter" data-level="" data-path="counting-the-sgrnas-with-rsubread.html"><a href="counting-the-sgrnas-with-rsubread.html#creating-a-dgelist-object"><i class="fa fa-check"></i>Creating a DGEList object</a></li>
+<li class="chapter" data-level="" data-path="counting-the-sgrnas-with-rsubread.html"><a href="counting-the-sgrnas-with-rsubread.html#build-an-index"><i class="fa fa-check"></i>Build an index</a></li>
+<li class="chapter" data-level="" data-path="counting-the-sgrnas-with-rsubread.html"><a href="counting-the-sgrnas-with-rsubread.html#align-the-fastq-files"><i class="fa fa-check"></i>Align the FASTQ files</a></li>
+<li class="chapter" data-level="" data-path="counting-the-sgrnas-with-rsubread.html"><a href="counting-the-sgrnas-with-rsubread.html#create-a-dgelist-object"><i class="fa fa-check"></i>Create a DGEList object</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="preprocessing-the-data.html"><a href="preprocessing-the-data.html"><i class="fa fa-check"></i>Preprocessing the data</a>
 <ul>
-<li class="chapter" data-level="" data-path="preprocessing-the-data.html"><a href="preprocessing-the-data.html#guide-distribution-across-samples"><i class="fa fa-check"></i>Guide distribution across samples</a></li>
-<li class="chapter" data-level="" data-path="preprocessing-the-data.html"><a href="preprocessing-the-data.html#gini-indices"><i class="fa fa-check"></i>Gini indices</a></li>
-<li class="chapter" data-level="" data-path="preprocessing-the-data.html"><a href="preprocessing-the-data.html#library-sizes-by-group"><i class="fa fa-check"></i>Library sizes by group</a></li>
-<li class="chapter" data-level="" data-path="preprocessing-the-data.html"><a href="preprocessing-the-data.html#removing-lowly-expressed-guides"><i class="fa fa-check"></i>Removing lowly expressed guides</a>
+<li class="chapter" data-level="" data-path="preprocessing-the-data.html"><a href="preprocessing-the-data.html#remove-control-guides"><i class="fa fa-check"></i>Remove control guides</a></li>
+<li class="chapter" data-level="" data-path="preprocessing-the-data.html"><a href="preprocessing-the-data.html#check-guide-distribution"><i class="fa fa-check"></i>Check guide distribution</a></li>
+<li class="chapter" data-level="" data-path="preprocessing-the-data.html"><a href="preprocessing-the-data.html#evaluate-the-uniformity"><i class="fa fa-check"></i>Evaluate the uniformity</a></li>
+<li class="chapter" data-level="" data-path="preprocessing-the-data.html"><a href="preprocessing-the-data.html#remove-lowly-expressed-guides"><i class="fa fa-check"></i>Remove lowly expressed guides</a>
 <ul>
-<li class="chapter" data-level="0.0.1" data-path="preprocessing-the-data.html"><a href="preprocessing-the-data.html#remove-non-targeting-guides"><i class="fa fa-check"></i><b>0.0.1</b> Remove Non-targeting guides</a></li>
 <li class="chapter" data-level="" data-path="preprocessing-the-data.html"><a href="preprocessing-the-data.html#strict-filtering"><i class="fa fa-check"></i>Strict filtering</a></li>
 <li class="chapter" data-level="" data-path="preprocessing-the-data.html"><a href="preprocessing-the-data.html#permissive-filtering"><i class="fa fa-check"></i>Permissive filtering</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="preprocessing-the-data.html"><a href="preprocessing-the-data.html#normalising-the-sgrna-counts"><i class="fa fa-check"></i>Normalising the sgRNA counts</a></li>
-<li class="chapter" data-level="" data-path="preprocessing-the-data.html"><a href="preprocessing-the-data.html#mds-plots"><i class="fa fa-check"></i>MDS plots</a></li>
+<li class="chapter" data-level="" data-path="preprocessing-the-data.html"><a href="preprocessing-the-data.html#look-at-density-plots"><i class="fa fa-check"></i>Look at density plots</a></li>
+<li class="chapter" data-level="" data-path="preprocessing-the-data.html"><a href="preprocessing-the-data.html#normalise-the-counts"><i class="fa fa-check"></i>Normalise the counts</a>
+<ul>
+<li class="chapter" data-level="" data-path="preprocessing-the-data.html"><a href="preprocessing-the-data.html#cpm-normalised-counts"><i class="fa fa-check"></i>CPM normalised counts</a></li>
+<li class="chapter" data-level="" data-path="preprocessing-the-data.html"><a href="preprocessing-the-data.html#tmm-normalised-counts"><i class="fa fa-check"></i>TMM normalised counts</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="preprocessing-the-data.html"><a href="preprocessing-the-data.html#unsupervised-clustering-of-samples"><i class="fa fa-check"></i>Unsupervised clustering of samples</a></li>
+<li class="chapter" data-level="" data-path="preprocessing-the-data.html"><a href="preprocessing-the-data.html#visualise-guide-abundance-profiles-of-samples"><i class="fa fa-check"></i>Visualise guide abundance profiles of samples</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="differential-abundance-analysis-at-guide-level.html"><a href="differential-abundance-analysis-at-guide-level.html"><i class="fa fa-check"></i>Differential abundance analysis at guide level</a>
 <ul>
-<li class="chapter" data-level="" data-path="differential-abundance-analysis-at-guide-level.html"><a href="differential-abundance-analysis-at-guide-level.html#create-a-design-matrix"><i class="fa fa-check"></i>Create a design matrix</a></li>
-<li class="chapter" data-level="" data-path="differential-abundance-analysis-at-guide-level.html"><a href="differential-abundance-analysis-at-guide-level.html#biological-variation"><i class="fa fa-check"></i>Biological variation</a></li>
-<li class="chapter" data-level="" data-path="differential-abundance-analysis-at-guide-level.html"><a href="differential-abundance-analysis-at-guide-level.html#fit-a-statistical-model"><i class="fa fa-check"></i>Fit a statistical model</a></li>
-<li class="chapter" data-level="" data-path="differential-abundance-analysis-at-guide-level.html"><a href="differential-abundance-analysis-at-guide-level.html#visualise-hit-guides"><i class="fa fa-check"></i>Visualise hit guides</a></li>
+<li class="chapter" data-level="" data-path="differential-abundance-analysis-at-guide-level.html"><a href="differential-abundance-analysis-at-guide-level.html#create-the-design-matrix"><i class="fa fa-check"></i>Create the design matrix</a></li>
+<li class="chapter" data-level="" data-path="differential-abundance-analysis-at-guide-level.html"><a href="differential-abundance-analysis-at-guide-level.html#fit-a-model-when-there-is-no-biological-replicates"><i class="fa fa-check"></i>Fit a model when there is no biological replicates</a>
+<ul>
+<li class="chapter" data-level="" data-path="differential-abundance-analysis-at-guide-level.html"><a href="differential-abundance-analysis-at-guide-level.html#classic-edger"><i class="fa fa-check"></i>Classic edgeR</a></li>
+<li class="chapter" data-level="" data-path="differential-abundance-analysis-at-guide-level.html"><a href="differential-abundance-analysis-at-guide-level.html#edger-glmlrt"><i class="fa fa-check"></i>edgeR glmLRT</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="differential-abundance-analysis-at-gene-level.html"><a href="differential-abundance-analysis-at-gene-level.html"><i class="fa fa-check"></i>Differential abundance analysis at gene level</a></li>
+<li class="chapter" data-level="" data-path="differential-abundance-analysis-at-guide-level.html"><a href="differential-abundance-analysis-at-guide-level.html#fit-a-model-when-there-are-biological-replicates"><i class="fa fa-check"></i>Fit a model when there are biological replicates</a>
+<ul>
+<li class="chapter" data-level="" data-path="differential-abundance-analysis-at-guide-level.html"><a href="differential-abundance-analysis-at-guide-level.html#dispersion-estimates-and-biological-variation"><i class="fa fa-check"></i>Dispersion estimates and biological variation</a></li>
+<li class="chapter" data-level="" data-path="differential-abundance-analysis-at-guide-level.html"><a href="differential-abundance-analysis-at-guide-level.html#edger-glmlrt-1"><i class="fa fa-check"></i>edgeR glmLRT</a></li>
+<li class="chapter" data-level="" data-path="differential-abundance-analysis-at-guide-level.html"><a href="differential-abundance-analysis-at-guide-level.html#edger-quasi"><i class="fa fa-check"></i>edgeR quasi</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="visualise-hit-guides.html"><a href="visualise-hit-guides.html"><i class="fa fa-check"></i>Visualise hit guides</a>
+<ul>
+<li class="chapter" data-level="" data-path="visualise-hit-guides.html"><a href="visualise-hit-guides.html#volcano-plot-toxa-vs-control"><i class="fa fa-check"></i>Volcano plot (ToxA vs Control)</a></li>
+<li class="chapter" data-level="" data-path="visualise-hit-guides.html"><a href="visualise-hit-guides.html#volcano-plot-toxb-vs-control"><i class="fa fa-check"></i>Volcano plot (ToxB vs Control)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="differential-abundance-analysis-at-gene-level.html"><a href="differential-abundance-analysis-at-gene-level.html"><i class="fa fa-check"></i>Differential abundance analysis at gene level</a>
+<ul>
+<li class="chapter" data-level="" data-path="differential-abundance-analysis-at-gene-level.html"><a href="differential-abundance-analysis-at-gene-level.html#toxa-vs-control"><i class="fa fa-check"></i>ToxA vs Control</a></li>
+<li class="chapter" data-level="" data-path="differential-abundance-analysis-at-gene-level.html"><a href="differential-abundance-analysis-at-gene-level.html#toxb-vs-control"><i class="fa fa-check"></i>ToxB vs Control</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -219,170 +236,282 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="preprocessing-the-data" class="section level1 unnumbered hasAnchor">
 <h1>Preprocessing the data<a href="preprocessing-the-data.html#preprocessing-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="preprocessing-the-data.html#cb12-1" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;./RData/DGEList.RData&quot;</span>)</span></code></pre></div>
-<div id="guide-distribution-across-samples" class="section level2 unnumbered hasAnchor">
-<h2>Guide distribution across samples<a href="preprocessing-the-data.html#guide-distribution-across-samples" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="preprocessing-the-data.html#cb13-1" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb13-2"><a href="preprocessing-the-data.html#cb13-2" tabindex="-1"></a>sample_names <span class="ot">&lt;-</span> <span class="fu">colnames</span>(d)</span>
-<span id="cb13-3"><a href="preprocessing-the-data.html#cb13-3" tabindex="-1"></a>l <span class="ot">&lt;-</span> <span class="fu">colSums</span>(<span class="sc">!</span>d<span class="sc">$</span>counts <span class="sc">==</span> <span class="dv">0</span>)</span>
-<span id="cb13-4"><a href="preprocessing-the-data.html#cb13-4" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">row.name =</span> sample_names, <span class="at">l =</span> l, <span class="at">t =</span> <span class="fu">as.character</span>(d<span class="sc">$</span>samples<span class="sc">$</span>group))</span>
-<span id="cb13-5"><a href="preprocessing-the-data.html#cb13-5" tabindex="-1"></a>data <span class="ot">&lt;-</span> data[<span class="fu">order</span>(data<span class="sc">$</span>l, d<span class="sc">$</span>samples<span class="sc">$</span>group), ]</span>
-<span id="cb13-6"><a href="preprocessing-the-data.html#cb13-6" tabindex="-1"></a>col <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;#6DAEB0&quot;</span>, <span class="st">&quot;#FAA578&quot;</span>, <span class="st">&quot;#FFB6C1&quot;</span>)</span>
-<span id="cb13-7"><a href="preprocessing-the-data.html#cb13-7" tabindex="-1"></a>my_bar <span class="ot">&lt;-</span> <span class="fu">barplot</span>(data<span class="sc">$</span>l, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">70000</span>), <span class="at">names.arg =</span> data<span class="sc">$</span>row.name, <span class="at">las =</span> <span class="dv">1</span>,</span>
-<span id="cb13-8"><a href="preprocessing-the-data.html#cb13-8" tabindex="-1"></a>    <span class="at">space =</span> <span class="dv">1</span>, <span class="at">xlab =</span> <span class="st">&quot;The number of detected guides&quot;</span>, <span class="at">main =</span> <span class="st">&quot;The distribution of guides&quot;</span>,</span>
-<span id="cb13-9"><a href="preprocessing-the-data.html#cb13-9" tabindex="-1"></a>    <span class="at">col =</span> col[<span class="fu">as.factor</span>(data<span class="sc">$</span>t)], <span class="at">border =</span> <span class="cn">NA</span>, <span class="at">legend =</span> <span class="cn">TRUE</span>, <span class="at">horiz =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb13-10"><a href="preprocessing-the-data.html#cb13-10" tabindex="-1"></a><span class="fu">text</span>(my_bar, <span class="at">x =</span> data<span class="sc">$</span>l <span class="sc">+</span> <span class="dv">3000</span>  <span class="co"># adjust this number</span></span>
-<span id="cb13-11"><a href="preprocessing-the-data.html#cb13-11" tabindex="-1"></a>, <span class="fu">paste0</span>(<span class="st">&quot;(n:&quot;</span>, data<span class="sc">$</span>l,</span>
-<span id="cb13-12"><a href="preprocessing-the-data.html#cb13-12" tabindex="-1"></a>    <span class="st">&quot;)&quot;</span>), <span class="at">las =</span> <span class="dv">2</span>)</span>
-<span id="cb13-13"><a href="preprocessing-the-data.html#cb13-13" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;bottomright&quot;</span>, <span class="at">legend =</span> <span class="fu">levels</span>(<span class="fu">factor</span>(data<span class="sc">$</span>t)), <span class="at">fill =</span> col)</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/guide%20distribution-1.png" width="576" /></p>
-</div>
-<div id="gini-indices" class="section level2 unnumbered hasAnchor">
-<h2>Gini indices<a href="preprocessing-the-data.html#gini-indices" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="preprocessing-the-data.html#cb14-1" tabindex="-1"></a><span class="fu">boxplot</span>(<span class="fu">gini</span>(d<span class="sc">$</span>counts) <span class="sc">~</span> d<span class="sc">$</span>samples<span class="sc">$</span>sampleName, <span class="at">ylab =</span> <span class="st">&quot;Gini Indices&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;&quot;</span>,</span>
-<span id="cb14-2"><a href="preprocessing-the-data.html#cb14-2" tabindex="-1"></a>    <span class="at">cex.axis =</span> <span class="fl">0.8</span>)</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/gini-1.png" width="576" /></p>
-</div>
-<div id="library-sizes-by-group" class="section level2 unnumbered hasAnchor">
-<h2>Library sizes by group<a href="preprocessing-the-data.html#library-sizes-by-group" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="preprocessing-the-data.html#cb15-1" tabindex="-1"></a>yy <span class="ot">&lt;-</span> d[, <span class="fu">order</span>(d<span class="sc">$</span>samples<span class="sc">$</span>group, <span class="fu">colSums</span>(d<span class="sc">$</span>counts))]</span>
-<span id="cb15-2"><a href="preprocessing-the-data.html#cb15-2" tabindex="-1"></a>yy.logcpm <span class="ot">&lt;-</span> <span class="fu">cpm</span>(yy<span class="sc">$</span>counts, <span class="at">log =</span> T)</span>
-<span id="cb15-3"><a href="preprocessing-the-data.html#cb15-3" tabindex="-1"></a><span class="fu">boxplot</span>(yy.logcpm, <span class="at">las =</span> <span class="dv">2</span>, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> col[<span class="fu">as.factor</span>(yy<span class="sc">$</span>samples<span class="sc">$</span>group)], <span class="at">outcex =</span> <span class="fl">0.3</span>,</span>
-<span id="cb15-4"><a href="preprocessing-the-data.html#cb15-4" tabindex="-1"></a>    <span class="at">outcol =</span> col[<span class="fu">as.factor</span>(yy<span class="sc">$</span>samples<span class="sc">$</span>group)], <span class="at">labels =</span> <span class="fu">colnames</span>(yy.logcpm), <span class="at">main =</span> <span class="st">&quot;SgRNA abundance before filtering&quot;</span>,</span>
-<span id="cb15-5"><a href="preprocessing-the-data.html#cb15-5" tabindex="-1"></a>    <span class="at">ylab =</span> <span class="st">&quot;SgRNA representation (log2 cpm normalised reads)&quot;</span>)</span>
-<span id="cb15-6"><a href="preprocessing-the-data.html#cb15-6" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="at">legend =</span> <span class="fu">levels</span>(<span class="fu">factor</span>(yy<span class="sc">$</span>samples<span class="sc">$</span>group)), <span class="at">col =</span> col, <span class="at">pch =</span> <span class="dv">19</span>,</span>
-<span id="cb15-7"><a href="preprocessing-the-data.html#cb15-7" tabindex="-1"></a>    <span class="at">cex =</span> <span class="fl">0.5</span>)</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/library%20sizes%20before%20filtering-1.png" width="576" /></p>
-</div>
-<div id="removing-lowly-expressed-guides" class="section level2 unnumbered hasAnchor">
-<h2>Removing lowly expressed guides<a href="preprocessing-the-data.html#removing-lowly-expressed-guides" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Guides lacking a substantial number of reads in any sample should be excluded from downstream analyses. There are multiple rationales for this choice. From a biological perspective, guides that fail to register at a biologically relevant level in any condition are deemed uninteresting and are consequently disregarded. From a statistical standpoint, the elimination of guides with low counts enhances the reliability of estimating the mean-variance relationship in the data. It also reduces the number of statistical tests required for subsequent analyses focused on differential abundance.</p>
-<p>To implement this, here we used two filtering methods: one permissive and the other strict. For the rigorous approach, guides with low expression were filtered out, retaining as many guides as possible with meaningful counts. This was achieved using the filterByExpr() function in the edgeR package, a tool commonly applied in RNA-seq experiments for automated gene filtering. Initially, the count matrix contained 122,411 guides. After applying filterByExpr(), 113,395 guides (93%) were removed due to their low presence, leaving 9,016 guides for further analysis. It’s worth noting that filterByExpr() often retains only one guide per gene, which is suboptimal for CRISPR screens, where the collective behavior of multiple guides targeting the same gene is essential for validation.</p>
-<p>To address this limitation, we used a more permissive filtering approach. This method involved defining guide-wise threshold (th1) and sample-wise threshold (th2). Th1 was computed using count per million (CPM) normalized values, while th2 was determined as the average number of samples in each condition. This approach aims to strike a balance, allowing for the inclusion of as many guides as possible targeting the same gene, facilitating a more robust assessment of the collective impact of guides in CRISPR screens. Consequently, with the permissive approach, we retained 58171 (48%) of the guides.</p>
-<div id="remove-non-targeting-guides" class="section level3 hasAnchor" number="0.0.1">
-<h3><span class="header-section-number">0.0.1</span> Remove Non-targeting guides<a href="preprocessing-the-data.html#remove-non-targeting-guides" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>First we remove 1000 Non-targeting sgRNAs.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="preprocessing-the-data.html#cb16-1" tabindex="-1"></a>d.raw <span class="ot">&lt;-</span> d</span>
-<span id="cb16-2"><a href="preprocessing-the-data.html#cb16-2" tabindex="-1"></a><span class="fu">dim</span>(d <span class="ot">&lt;-</span> d[<span class="sc">!</span>d<span class="sc">$</span>genes<span class="sc">$</span>Symbol <span class="sc">%in%</span> <span class="fu">grep</span>(<span class="st">&quot;Non&quot;</span>, d<span class="sc">$</span>genes<span class="sc">$</span>Symbol, <span class="at">value =</span> <span class="cn">TRUE</span>), ])</span></code></pre></div>
+<p>Before conducting the differential abundance analysis in a CRISPR screen, we eliminate guides that could compromise the statistical power in the downstream analysis. Specifically, we exclude non-targeting sgRNAs employed to assess the sgRNA library’s quality, as they are unnecessary for the further statistical analysis. Subsequently, we filter out guides with very low counts across many samples.</p>
+<p>The next step is normalization. The normalization following filtering is vital because each library is sequenced at varying depths, and libraries with higher counts will naturally yield higher counts. Normalization involves transforming raw counts onto a different scale where differences in library sizes are considered and adjusted for.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="preprocessing-the-data.html#cb14-1" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;./RData/DGEList.RData&quot;</span>)</span></code></pre></div>
+<div id="remove-control-guides" class="section level3 unnumbered hasAnchor">
+<h3>Remove control guides<a href="preprocessing-the-data.html#remove-control-guides" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>First we remove 1000 control (non-targeting) sgRNAs from the count matrix as they are designed not to target in the genome.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="preprocessing-the-data.html#cb15-1" tabindex="-1"></a>d.raw <span class="ot">&lt;-</span> d</span>
+<span id="cb15-2"><a href="preprocessing-the-data.html#cb15-2" tabindex="-1"></a><span class="fu">dim</span>(d <span class="ot">&lt;-</span> d[<span class="sc">!</span>d<span class="sc">$</span>genes<span class="sc">$</span>Symbol <span class="sc">%in%</span> <span class="fu">grep</span>(<span class="st">&quot;Non&quot;</span>, d<span class="sc">$</span>genes<span class="sc">$</span>Symbol, <span class="at">value =</span> <span class="cn">TRUE</span>), ])</span></code></pre></div>
 <pre><code>[1] 121411      6</code></pre>
 </div>
+<div id="check-guide-distribution" class="section level2 unnumbered hasAnchor">
+<h2>Check guide distribution<a href="preprocessing-the-data.html#check-guide-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The control samples contain the majority of sgRNAs, and the numbers decrease in the treated samples.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="preprocessing-the-data.html#cb17-1" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb17-2"><a href="preprocessing-the-data.html#cb17-2" tabindex="-1"></a>sample_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">colnames</span>(d), <span class="st">&quot;GeCKO&quot;</span>)</span>
+<span id="cb17-3"><a href="preprocessing-the-data.html#cb17-3" tabindex="-1"></a>l <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">as.integer</span>(<span class="fu">colSums</span>(<span class="sc">!</span>d<span class="sc">$</span>counts <span class="sc">==</span> <span class="dv">0</span>)), <span class="fu">nrow</span>(d<span class="sc">$</span>counts))</span>
+<span id="cb17-4"><a href="preprocessing-the-data.html#cb17-4" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">as.character</span>(d<span class="sc">$</span>samples<span class="sc">$</span>group), <span class="st">&quot;GeCKO&quot;</span>)</span>
+<span id="cb17-5"><a href="preprocessing-the-data.html#cb17-5" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">row.name =</span> sample_names, <span class="at">l =</span> l, <span class="at">t =</span> t)</span>
+<span id="cb17-6"><a href="preprocessing-the-data.html#cb17-6" tabindex="-1"></a>data <span class="ot">&lt;-</span> data[<span class="fu">order</span>(data<span class="sc">$</span>l, data<span class="sc">$</span>t), ]</span>
+<span id="cb17-7"><a href="preprocessing-the-data.html#cb17-7" tabindex="-1"></a>col <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;#FF6666&quot;</span>, <span class="st">&quot;#6DAEB0&quot;</span>, <span class="st">&quot;#FAA578&quot;</span>, <span class="st">&quot;#FFB6C1&quot;</span>)</span>
+<span id="cb17-8"><a href="preprocessing-the-data.html#cb17-8" tabindex="-1"></a>my_bar <span class="ot">&lt;-</span> <span class="fu">barplot</span>(data<span class="sc">$</span>l, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">140000</span>), <span class="at">names.arg =</span> data<span class="sc">$</span>row.name, <span class="at">las =</span> <span class="dv">1</span>,</span>
+<span id="cb17-9"><a href="preprocessing-the-data.html#cb17-9" tabindex="-1"></a>    <span class="at">space =</span> <span class="dv">1</span>, <span class="at">cex.names =</span> <span class="fl">0.85</span>, <span class="at">xlab =</span> <span class="st">&quot;The number of detected guides&quot;</span>, <span class="at">main =</span> <span class="st">&quot;The distribution of guides&quot;</span>,</span>
+<span id="cb17-10"><a href="preprocessing-the-data.html#cb17-10" tabindex="-1"></a>    <span class="at">col =</span> col[<span class="fu">as.factor</span>(data<span class="sc">$</span>t)], <span class="at">border =</span> <span class="cn">NA</span>, <span class="at">legend =</span> <span class="cn">TRUE</span>, <span class="at">horiz =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb17-11"><a href="preprocessing-the-data.html#cb17-11" tabindex="-1"></a><span class="fu">text</span>(my_bar, <span class="at">x =</span> data<span class="sc">$</span>l <span class="sc">+</span> <span class="dv">7000</span>  <span class="co"># adjust this number</span></span>
+<span id="cb17-12"><a href="preprocessing-the-data.html#cb17-12" tabindex="-1"></a>, <span class="fu">paste0</span>(<span class="st">&quot;n:&quot;</span>, data<span class="sc">$</span>l),</span>
+<span id="cb17-13"><a href="preprocessing-the-data.html#cb17-13" tabindex="-1"></a>    <span class="at">las =</span> <span class="dv">2</span>)</span>
+<span id="cb17-14"><a href="preprocessing-the-data.html#cb17-14" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;bottomright&quot;</span>, <span class="at">legend =</span> <span class="fu">levels</span>(<span class="fu">factor</span>(data<span class="sc">$</span>t)), <span class="at">fill =</span> col)</span></code></pre></div>
+<p><img src="figures/guide%20distribution-1.png" width="960" /></p>
+</div>
+<div id="evaluate-the-uniformity" class="section level2 unnumbered hasAnchor">
+<h2>Evaluate the uniformity<a href="preprocessing-the-data.html#evaluate-the-uniformity" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The Gini index, originally an economic measure of inequality, is used in CRISPR analysis to evaluate the uniformity of sgRNA presence. A Gini index of 0 indicates evenness, while an index of 1 suggests unevenness. Here, it’s notable that the control samples exhibit greater uniformity compared to the treated samples.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="preprocessing-the-data.html#cb18-1" tabindex="-1"></a><span class="fu">gini</span>(d<span class="sc">$</span>counts)</span></code></pre></div>
+<pre><code>Control_1 Control_2    ToxA_1    ToxA_2    ToxB_1    ToxB_2 
+0.7743390 0.7519516 0.9493576 0.9198235 0.9703805 0.9723415 </code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="preprocessing-the-data.html#cb20-1" tabindex="-1"></a><span class="fu">boxplot</span>(<span class="fu">gini</span>(d<span class="sc">$</span>counts) <span class="sc">~</span> d<span class="sc">$</span>samples<span class="sc">$</span>sampleName, <span class="at">ylab =</span> <span class="st">&quot;Gini Indices&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb20-2"><a href="preprocessing-the-data.html#cb20-2" tabindex="-1"></a>    <span class="at">cex.axis =</span> <span class="fl">0.8</span>)</span></code></pre></div>
+<p><img src="figures/gini-1.png" width="672" /></p>
+</div>
+<div id="remove-lowly-expressed-guides" class="section level2 unnumbered hasAnchor">
+<h2>Remove lowly expressed guides<a href="preprocessing-the-data.html#remove-lowly-expressed-guides" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Guides lacking a substantial number of reads in any sample should be excluded from downstream analyses. There are multiple rationales for this choice. From a biological perspective, guides that fail to register at a biologically relevant level in any condition are deemed uninteresting and are consequently disregarded. From a statistical standpoint, the elimination of guides with low counts enhances the reliability of estimating the mean-variance relationship in the data. It also reduces the number of statistical tests required for subsequent analyses focused on differential abundance.</p>
+<p>To implement this, here we used two filtering methods: one permissive and the other strict.</p>
 <div id="strict-filtering" class="section level3 unnumbered hasAnchor">
 <h3>Strict filtering<a href="preprocessing-the-data.html#strict-filtering" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="preprocessing-the-data.html#cb18-1" tabindex="-1"></a>keep.exprs <span class="ot">&lt;-</span> <span class="fu">filterByExpr</span>(d, <span class="at">group =</span> d<span class="sc">$</span>samples<span class="sc">$</span>group)</span>
-<span id="cb18-2"><a href="preprocessing-the-data.html#cb18-2" tabindex="-1"></a><span class="fu">table</span>(keep.exprs)</span></code></pre></div>
+<p>For the strict approach, guides with low expression were filtered out, retaining as many guides as possible with meaningful counts. This was achieved using the <code>filterByExpr()</code> function in the <code>edgeR</code> package, a tool commonly applied in RNA-seq experiments for automated gene filtering. Initially, the count matrix contained 122,411 guides. After applying <code>filterByExpr()</code>, 113,395 guides (93%) were removed due to their low presence, leaving 9,016 guides for further analysis. It’s worth noting that <code>filterByExpr()</code> often retains only one guide per gene, which is sub optimal for CRISPR screens, where the collective behavior of multiple guides targeting the same gene is essential for validation.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="preprocessing-the-data.html#cb21-1" tabindex="-1"></a>keep.exprs <span class="ot">&lt;-</span> <span class="fu">filterByExpr</span>(d, <span class="at">group =</span> d<span class="sc">$</span>samples<span class="sc">$</span>group)</span>
+<span id="cb21-2"><a href="preprocessing-the-data.html#cb21-2" tabindex="-1"></a><span class="fu">table</span>(keep.exprs)</span></code></pre></div>
 <pre><code>keep.exprs
  FALSE   TRUE 
 112601   8810 </code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="preprocessing-the-data.html#cb20-1" tabindex="-1"></a><span class="fu">dim</span>(d.filtered.s <span class="ot">&lt;-</span> d[keep.exprs, , <span class="at">keep.lib.sizes =</span> <span class="cn">FALSE</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="preprocessing-the-data.html#cb23-1" tabindex="-1"></a><span class="fu">dim</span>(d.filtered.s <span class="ot">&lt;-</span> d[keep.exprs, , <span class="at">keep.lib.sizes =</span> <span class="cn">FALSE</span>])</span></code></pre></div>
 <pre><code>[1] 8810    6</code></pre>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="preprocessing-the-data.html#cb22-1" tabindex="-1"></a>genes_sgrna <span class="ot">&lt;-</span> d.filtered.s<span class="sc">$</span>genes<span class="sc">$</span>Symbol</span>
-<span id="cb22-2"><a href="preprocessing-the-data.html#cb22-2" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">unique</span>(genes_sgrna))</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="preprocessing-the-data.html#cb25-1" tabindex="-1"></a>genes_sgrna <span class="ot">&lt;-</span> d.filtered.s<span class="sc">$</span>genes<span class="sc">$</span>Symbol</span>
+<span id="cb25-2"><a href="preprocessing-the-data.html#cb25-2" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">unique</span>(genes_sgrna))</span></code></pre></div>
 <pre><code>[1] 7277</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="preprocessing-the-data.html#cb24-1" tabindex="-1"></a>nsgrna <span class="ot">&lt;-</span> <span class="fu">table</span>(<span class="fu">table</span>(genes_sgrna))</span>
-<span id="cb24-2"><a href="preprocessing-the-data.html#cb24-2" tabindex="-1"></a>nsgrna</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="preprocessing-the-data.html#cb27-1" tabindex="-1"></a>nsgrna <span class="ot">&lt;-</span> <span class="fu">table</span>(<span class="fu">table</span>(genes_sgrna))</span>
+<span id="cb27-2"><a href="preprocessing-the-data.html#cb27-2" tabindex="-1"></a>nsgrna</span></code></pre></div>
 <pre><code>
    1    2    3    4    5    6 
 5912 1215  135   13    1    1 </code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="preprocessing-the-data.html#cb26-1" tabindex="-1"></a><span class="fu">barplot</span>(nsgrna, <span class="at">col =</span> <span class="st">&quot;#FF9999&quot;</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">7000</span>), <span class="at">border =</span> <span class="cn">NA</span>, <span class="at">main =</span> <span class="st">&quot;The distribution of number of sgRNAs per gene </span><span class="sc">\n</span><span class="st"> (After strict filtering)&quot;</span>)</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/strict%20filtering%20guide%20distribution-1.png" width="576" /></p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="preprocessing-the-data.html#cb27-1" tabindex="-1"></a>yy <span class="ot">&lt;-</span> d.filtered.s[, <span class="fu">order</span>(d.filtered.s<span class="sc">$</span>samples<span class="sc">$</span>group, <span class="fu">colSums</span>(d.filtered.s<span class="sc">$</span>counts))]</span>
-<span id="cb27-2"><a href="preprocessing-the-data.html#cb27-2" tabindex="-1"></a>yy.logcpm <span class="ot">&lt;-</span> <span class="fu">cpm</span>(yy<span class="sc">$</span>counts, <span class="at">log =</span> T)</span>
-<span id="cb27-3"><a href="preprocessing-the-data.html#cb27-3" tabindex="-1"></a><span class="fu">boxplot</span>(yy.logcpm, <span class="at">las =</span> <span class="dv">2</span>, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">cex.axis =</span> <span class="fl">0.5</span>, <span class="at">col =</span> col[<span class="fu">as.factor</span>(yy<span class="sc">$</span>samples<span class="sc">$</span>group)],</span>
-<span id="cb27-4"><a href="preprocessing-the-data.html#cb27-4" tabindex="-1"></a>    <span class="at">outcex =</span> <span class="fl">0.3</span>, <span class="at">outcol =</span> col[<span class="fu">as.factor</span>(yy<span class="sc">$</span>samples<span class="sc">$</span>group)], <span class="at">labels =</span> <span class="fu">colnames</span>(yy.logcpm),</span>
-<span id="cb27-5"><a href="preprocessing-the-data.html#cb27-5" tabindex="-1"></a>    <span class="at">main =</span> <span class="st">&quot;SgRNA abundance after strict filtering&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;SgRNA representation (log2 cpm normalised reads)&quot;</span>)</span>
-<span id="cb27-6"><a href="preprocessing-the-data.html#cb27-6" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="at">legend =</span> <span class="fu">levels</span>(<span class="fu">factor</span>(yy<span class="sc">$</span>samples<span class="sc">$</span>group)), <span class="at">col =</span> col, <span class="at">pch =</span> <span class="dv">19</span>,</span>
-<span id="cb27-7"><a href="preprocessing-the-data.html#cb27-7" tabindex="-1"></a>    <span class="at">cex =</span> <span class="fl">0.5</span>)</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/library%20sizes%20after%20strict%20filtering-1.png" width="576" /></p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="preprocessing-the-data.html#cb29-1" tabindex="-1"></a><span class="fu">barplot</span>(nsgrna, <span class="at">col =</span> <span class="st">&quot;#FF9999&quot;</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">7000</span>), <span class="at">border =</span> <span class="cn">NA</span>, <span class="at">main =</span> <span class="st">&quot;The distribution of number of sgRNAs per gene </span><span class="sc">\n</span><span class="st"> (After strict filtering)&quot;</span>)</span></code></pre></div>
+<p><img src="figures/strict%20filtering%20guide%20distribution-1.png" width="672" /></p>
 </div>
 <div id="permissive-filtering" class="section level3 unnumbered hasAnchor">
 <h3>Permissive filtering<a href="preprocessing-the-data.html#permissive-filtering" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="preprocessing-the-data.html#cb28-1" tabindex="-1"></a>th1 <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="fu">cpm</span>(<span class="dv">1</span>, <span class="fu">mean</span>(d<span class="sc">$</span>samples<span class="sc">$</span>lib.size)))</span>
-<span id="cb28-2"><a href="preprocessing-the-data.html#cb28-2" tabindex="-1"></a>th1  <span class="co"># average count per million reads (1e6/mean(d$samples$lib.size))</span></span></code></pre></div>
-<pre><code>[1] 2.90183</code></pre>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="preprocessing-the-data.html#cb30-1" tabindex="-1"></a>th2 <span class="ot">&lt;-</span> <span class="dv">2</span>  <span class="co"># average number of sample per condition</span></span>
-<span id="cb30-2"><a href="preprocessing-the-data.html#cb30-2" tabindex="-1"></a>isexprs <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(<span class="fu">cpm</span>(d) <span class="sc">&gt;</span> th1) <span class="sc">&gt;=</span> th2</span>
-<span id="cb30-3"><a href="preprocessing-the-data.html#cb30-3" tabindex="-1"></a><span class="fu">table</span>(isexprs)</span></code></pre></div>
-<pre><code>isexprs
+<p>To address the limitations of strict filtering, we used a more permissive filtering approach. This method involved defining guide-wise threshold (<span class="math inline">\(th1\)</span>) and sample-wise threshold (<span class="math inline">\(th2\)</span>). We utilize CPM (Counts Per Million) values instead of raw counts to prevent bias toward samples with larger library sizes. For this dataset, the median library size is about <span class="math inline">\(341,201\)</span> and <span class="math inline">\(th1\)</span> is computed as <span class="math inline">\(1e6/341201 ≈ 0.29\)</span>, so the permissive filtering keeps the guides that have a CPM of 0.29 or more in at least <span class="math inline">\(th2=2\)</span> samples.</p>
+<p>This approach aims to strike a balance, allowing for the inclusion of as many guides as possible targeting the same gene, facilitating a more robust assessment of the collective impact of guides in CRISPR screens. Consequently, with the permissive approach, we retained <span class="math inline">\(58171 (48\%)\)</span> of the guides.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="preprocessing-the-data.html#cb30-1" tabindex="-1"></a>th1 <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="fu">cpm</span>(<span class="dv">1</span>, <span class="fu">median</span>(d<span class="sc">$</span>samples<span class="sc">$</span>lib.size)))</span>
+<span id="cb30-2"><a href="preprocessing-the-data.html#cb30-2" tabindex="-1"></a>th1  <span class="co"># median count per million reads (1e6/mean(d$samples$lib.size))</span></span></code></pre></div>
+<pre><code>[1] 2.930824</code></pre>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="preprocessing-the-data.html#cb32-1" tabindex="-1"></a>th2 <span class="ot">&lt;-</span> <span class="dv">2</span>  <span class="co"># average number of sample per condition</span></span>
+<span id="cb32-2"><a href="preprocessing-the-data.html#cb32-2" tabindex="-1"></a>keep.exprs <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(<span class="fu">cpm</span>(d) <span class="sc">&gt;</span> th1) <span class="sc">&gt;=</span> th2</span>
+<span id="cb32-3"><a href="preprocessing-the-data.html#cb32-3" tabindex="-1"></a><span class="fu">table</span>(keep.exprs)</span></code></pre></div>
+<pre><code>keep.exprs
 FALSE  TRUE 
-64038 57373 </code></pre>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="preprocessing-the-data.html#cb32-1" tabindex="-1"></a><span class="fu">dim</span>(d.filtered.p <span class="ot">&lt;-</span> d[isexprs, ])</span></code></pre></div>
-<pre><code>[1] 57373     6</code></pre>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="preprocessing-the-data.html#cb34-1" tabindex="-1"></a>genes_sgrna <span class="ot">&lt;-</span> d.filtered.p<span class="sc">$</span>genes<span class="sc">$</span>Symbol</span>
-<span id="cb34-2"><a href="preprocessing-the-data.html#cb34-2" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">unique</span>(genes_sgrna))</span></code></pre></div>
-<pre><code>[1] 19736</code></pre>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="preprocessing-the-data.html#cb36-1" tabindex="-1"></a>nsgrna <span class="ot">&lt;-</span> <span class="fu">table</span>(<span class="fu">table</span>(genes_sgrna))</span>
-<span id="cb36-2"><a href="preprocessing-the-data.html#cb36-2" tabindex="-1"></a>nsgrna</span></code></pre></div>
+65484 55927 </code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="preprocessing-the-data.html#cb34-1" tabindex="-1"></a><span class="fu">dim</span>(d.filtered.p <span class="ot">&lt;-</span> d[keep.exprs, , <span class="at">keep.lib.sizes =</span> <span class="cn">FALSE</span>])</span></code></pre></div>
+<pre><code>[1] 55927     6</code></pre>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="preprocessing-the-data.html#cb36-1" tabindex="-1"></a>genes_sgrna <span class="ot">&lt;-</span> d.filtered.p<span class="sc">$</span>genes<span class="sc">$</span>Symbol</span>
+<span id="cb36-2"><a href="preprocessing-the-data.html#cb36-2" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">unique</span>(genes_sgrna))</span></code></pre></div>
+<pre><code>[1] 19659</code></pre>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="preprocessing-the-data.html#cb38-1" tabindex="-1"></a>nsgrna <span class="ot">&lt;-</span> <span class="fu">table</span>(<span class="fu">table</span>(genes_sgrna))</span>
+<span id="cb38-2"><a href="preprocessing-the-data.html#cb38-2" tabindex="-1"></a>nsgrna</span></code></pre></div>
 <pre><code>
    1    2    3    4    5    6 
-2672 4968 5933 4162 1688  313 </code></pre>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="preprocessing-the-data.html#cb38-1" tabindex="-1"></a><span class="fu">barplot</span>(nsgrna, <span class="at">col =</span> <span class="st">&quot;#FF9999&quot;</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">7000</span>), <span class="at">border =</span> <span class="cn">NA</span>, <span class="at">main =</span> <span class="st">&quot;The distribution of number of sgRNAs per gene </span><span class="sc">\n</span><span class="st"> (After permissive filtering)&quot;</span>)</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/permissive%20filtering%20guide%20distribution-1.png" width="576" /></p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="preprocessing-the-data.html#cb39-1" tabindex="-1"></a>yy <span class="ot">&lt;-</span> d.filtered.p[, <span class="fu">order</span>(d.filtered.p<span class="sc">$</span>samples<span class="sc">$</span>group, <span class="fu">colSums</span>(d.filtered.p<span class="sc">$</span>counts))]</span>
-<span id="cb39-2"><a href="preprocessing-the-data.html#cb39-2" tabindex="-1"></a>yy.logcpm <span class="ot">&lt;-</span> <span class="fu">cpm</span>(yy<span class="sc">$</span>counts, <span class="at">log =</span> T)</span>
-<span id="cb39-3"><a href="preprocessing-the-data.html#cb39-3" tabindex="-1"></a><span class="fu">boxplot</span>(yy.logcpm, <span class="at">las =</span> <span class="dv">2</span>, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">cex.axis =</span> <span class="fl">0.5</span>, <span class="at">col =</span> col[<span class="fu">as.factor</span>(yy<span class="sc">$</span>samples<span class="sc">$</span>group)],</span>
-<span id="cb39-4"><a href="preprocessing-the-data.html#cb39-4" tabindex="-1"></a>    <span class="at">outcex =</span> <span class="fl">0.3</span>, <span class="at">outcol =</span> col[<span class="fu">as.factor</span>(yy<span class="sc">$</span>samples<span class="sc">$</span>group)], <span class="at">labels =</span> <span class="fu">colnames</span>(yy.logcpm),</span>
-<span id="cb39-5"><a href="preprocessing-the-data.html#cb39-5" tabindex="-1"></a>    <span class="at">main =</span> <span class="st">&quot;SgRNA abundance after permissive filtering&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;SgRNA representation (log2 cpm normalised reads)&quot;</span>)</span>
-<span id="cb39-6"><a href="preprocessing-the-data.html#cb39-6" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="at">legend =</span> <span class="fu">levels</span>(<span class="fu">factor</span>(yy<span class="sc">$</span>samples<span class="sc">$</span>group)), <span class="at">col =</span> col, <span class="at">pch =</span> <span class="dv">19</span>,</span>
-<span id="cb39-7"><a href="preprocessing-the-data.html#cb39-7" tabindex="-1"></a>    <span class="at">cex =</span> <span class="fl">0.5</span>)</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/library%20sizes%20after%20permissive%20filtering-1.png" width="576" /></p>
+2867 5150 5870 3983 1516  273 </code></pre>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="preprocessing-the-data.html#cb40-1" tabindex="-1"></a><span class="fu">barplot</span>(nsgrna, <span class="at">col =</span> <span class="st">&quot;#FF9999&quot;</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">7000</span>), <span class="at">border =</span> <span class="cn">NA</span>, <span class="at">main =</span> <span class="st">&quot;The distribution of number of sgRNAs per gene </span><span class="sc">\n</span><span class="st"> (After permissive filtering)&quot;</span>)</span></code></pre></div>
+<p><img src="figures/permissive%20filtering%20guide%20distribution-1.png" width="672" /></p>
 </div>
 </div>
-<div id="normalising-the-sgrna-counts" class="section level2 unnumbered hasAnchor">
-<h2>Normalising the sgRNA counts<a href="preprocessing-the-data.html#normalising-the-sgrna-counts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>During the sample preparation or sequencing process, external factors that are not of biological interest can affect the expression of individual samples.
-For example, samples processed in the first batch of an experiment can have higher expression overall when compared to samples processed in a second batch.
-It is assumed that all samples should have a similar range and distribution of expression values.
-Normalisation is required to ensure that the expression distributions of each sample are similar across the entire experiment.
-Here we applied the upperquartile method from calcNormFactors function in edgeR. In the upper-quartile normalization method of Bullard et al (2010), <strong>Bullard JH, Purdom E, Hansen KD, Dudoit S. (2010) Evaluation of statistical methods for normalization and differential expression in mRNA-Seq experiments. BMC Bioinformatics 11, 94.</strong>, the scale factors are calculated from the 75% quantile of the counts for each library, after removing genes that are zero in all libraries.
-When working with DGEList-objects, the normalisation factors are automatically stored.
-For this dataset, the effect of upperquartile-normalisation is mild, as evident in the magnitude of the scaling factors, which are all not too far from 1 as we expected them to be.</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="preprocessing-the-data.html#cb40-1" tabindex="-1"></a>yy.norm <span class="ot">&lt;-</span> d.filtered.s</span>
-<span id="cb40-2"><a href="preprocessing-the-data.html#cb40-2" tabindex="-1"></a>yy.norm<span class="sc">$</span>samples<span class="sc">$</span>norm.factors <span class="ot">&lt;-</span> <span class="fu">calcNormFactors</span>(yy.norm<span class="sc">$</span>counts, <span class="at">method =</span> <span class="st">&quot;TMM&quot;</span>)</span>
-<span id="cb40-3"><a href="preprocessing-the-data.html#cb40-3" tabindex="-1"></a>yy.norm<span class="sc">$</span>samples[, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]  <span class="co"># TMM norm factors of strictly filtered data</span></span></code></pre></div>
+<div id="look-at-density-plots" class="section level2 unnumbered hasAnchor">
+<h2>Look at density plots<a href="preprocessing-the-data.html#look-at-density-plots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The density distributions of raw counts reveal the presence of numerous guides with low abundance, characterized by small log-cpm values. The application of permissive filtering appears to diminish the count of such lowly abundant guides. This reduction is evident in the decreased peakedness (kurtosis) of the distribution, accompanied by a shift towards greater symmetry as indicated by the balanced skewness.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="preprocessing-the-data.html#cb41-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> d</span>
+<span id="cb41-2"><a href="preprocessing-the-data.html#cb41-2" tabindex="-1"></a>nsamples <span class="ot">&lt;-</span> <span class="fu">ncol</span>(x)</span>
+<span id="cb41-3"><a href="preprocessing-the-data.html#cb41-3" tabindex="-1"></a>col.density <span class="ot">&lt;-</span> <span class="fu">brewer.pal</span>(nsamples, <span class="st">&quot;Paired&quot;</span>)</span>
+<span id="cb41-4"><a href="preprocessing-the-data.html#cb41-4" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>))</span>
+<span id="cb41-5"><a href="preprocessing-the-data.html#cb41-5" tabindex="-1"></a>samplenames <span class="ot">&lt;-</span> <span class="fu">colnames</span>(x)</span>
+<span id="cb41-6"><a href="preprocessing-the-data.html#cb41-6" tabindex="-1"></a>cpm <span class="ot">&lt;-</span> <span class="fu">cpm</span>(x)</span>
+<span id="cb41-7"><a href="preprocessing-the-data.html#cb41-7" tabindex="-1"></a>lcpm <span class="ot">&lt;-</span> <span class="fu">cpm</span>(x, <span class="at">log =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb41-8"><a href="preprocessing-the-data.html#cb41-8" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(lcpm[, <span class="dv">1</span>], <span class="at">bw =</span> <span class="fl">0.4</span>), <span class="at">col =</span> col.density[<span class="dv">1</span>], <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb41-9"><a href="preprocessing-the-data.html#cb41-9" tabindex="-1"></a>    <span class="at">las =</span> <span class="dv">2</span>, <span class="at">main =</span> <span class="st">&quot;&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb41-10"><a href="preprocessing-the-data.html#cb41-10" tabindex="-1"></a><span class="fu">title</span>(<span class="at">main =</span> <span class="st">&quot;A. Raw data&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Log-cpm&quot;</span>)</span>
+<span id="cb41-11"><a href="preprocessing-the-data.html#cb41-11" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>nsamples) {</span>
+<span id="cb41-12"><a href="preprocessing-the-data.html#cb41-12" tabindex="-1"></a>    den <span class="ot">&lt;-</span> <span class="fu">density</span>(lcpm[, i], <span class="at">bw =</span> <span class="fl">0.4</span>)</span>
+<span id="cb41-13"><a href="preprocessing-the-data.html#cb41-13" tabindex="-1"></a>    <span class="fu">lines</span>(den<span class="sc">$</span>x, den<span class="sc">$</span>y, <span class="at">col =</span> col.density[i], <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb41-14"><a href="preprocessing-the-data.html#cb41-14" tabindex="-1"></a>}</span>
+<span id="cb41-15"><a href="preprocessing-the-data.html#cb41-15" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>, samplenames, <span class="at">text.col =</span> col.density, <span class="at">bty =</span> <span class="st">&quot;n&quot;</span>)</span>
+<span id="cb41-16"><a href="preprocessing-the-data.html#cb41-16" tabindex="-1"></a></span>
+<span id="cb41-17"><a href="preprocessing-the-data.html#cb41-17" tabindex="-1"></a>x <span class="ot">&lt;-</span> d.filtered.p</span>
+<span id="cb41-18"><a href="preprocessing-the-data.html#cb41-18" tabindex="-1"></a>cpm <span class="ot">&lt;-</span> <span class="fu">cpm</span>(x)</span>
+<span id="cb41-19"><a href="preprocessing-the-data.html#cb41-19" tabindex="-1"></a>lcpm <span class="ot">&lt;-</span> <span class="fu">cpm</span>(x, <span class="at">log =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb41-20"><a href="preprocessing-the-data.html#cb41-20" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(lcpm[, <span class="dv">1</span>], <span class="at">bw =</span> <span class="fl">0.4</span>), <span class="at">col =</span> col.density[<span class="dv">1</span>], <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb41-21"><a href="preprocessing-the-data.html#cb41-21" tabindex="-1"></a>    <span class="at">las =</span> <span class="dv">2</span>, <span class="at">main =</span> <span class="st">&quot;&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb41-22"><a href="preprocessing-the-data.html#cb41-22" tabindex="-1"></a><span class="fu">title</span>(<span class="at">main =</span> <span class="st">&quot;B. Permissively filtered data&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Log-cpm&quot;</span>)</span>
+<span id="cb41-23"><a href="preprocessing-the-data.html#cb41-23" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>nsamples) {</span>
+<span id="cb41-24"><a href="preprocessing-the-data.html#cb41-24" tabindex="-1"></a>    den <span class="ot">&lt;-</span> <span class="fu">density</span>(lcpm[, i], <span class="at">bw =</span> <span class="fl">0.4</span>)</span>
+<span id="cb41-25"><a href="preprocessing-the-data.html#cb41-25" tabindex="-1"></a>    <span class="fu">lines</span>(den<span class="sc">$</span>x, den<span class="sc">$</span>y, <span class="at">col =</span> col.density[i], <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb41-26"><a href="preprocessing-the-data.html#cb41-26" tabindex="-1"></a>}</span>
+<span id="cb41-27"><a href="preprocessing-the-data.html#cb41-27" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>, samplenames, <span class="at">text.col =</span> col.density, <span class="at">bty =</span> <span class="st">&quot;n&quot;</span>)</span>
+<span id="cb41-28"><a href="preprocessing-the-data.html#cb41-28" tabindex="-1"></a></span>
+<span id="cb41-29"><a href="preprocessing-the-data.html#cb41-29" tabindex="-1"></a>x <span class="ot">&lt;-</span> d.filtered.s</span>
+<span id="cb41-30"><a href="preprocessing-the-data.html#cb41-30" tabindex="-1"></a>cpm <span class="ot">&lt;-</span> <span class="fu">cpm</span>(x)</span>
+<span id="cb41-31"><a href="preprocessing-the-data.html#cb41-31" tabindex="-1"></a>lcpm <span class="ot">&lt;-</span> <span class="fu">cpm</span>(x, <span class="at">log =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb41-32"><a href="preprocessing-the-data.html#cb41-32" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(lcpm[, <span class="dv">1</span>], <span class="at">bw =</span> <span class="fl">0.4</span>), <span class="at">col =</span> col.density[<span class="dv">1</span>], <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb41-33"><a href="preprocessing-the-data.html#cb41-33" tabindex="-1"></a>    <span class="at">las =</span> <span class="dv">2</span>, <span class="at">main =</span> <span class="st">&quot;&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb41-34"><a href="preprocessing-the-data.html#cb41-34" tabindex="-1"></a><span class="fu">title</span>(<span class="at">main =</span> <span class="st">&quot;C. Strictly filtered data&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Log-cpm&quot;</span>)</span>
+<span id="cb41-35"><a href="preprocessing-the-data.html#cb41-35" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>nsamples) {</span>
+<span id="cb41-36"><a href="preprocessing-the-data.html#cb41-36" tabindex="-1"></a>    den <span class="ot">&lt;-</span> <span class="fu">density</span>(lcpm[, i])</span>
+<span id="cb41-37"><a href="preprocessing-the-data.html#cb41-37" tabindex="-1"></a>    <span class="fu">lines</span>(den<span class="sc">$</span>x, den<span class="sc">$</span>y, <span class="at">col =</span> col.density[i], <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb41-38"><a href="preprocessing-the-data.html#cb41-38" tabindex="-1"></a>}</span>
+<span id="cb41-39"><a href="preprocessing-the-data.html#cb41-39" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>, samplenames, <span class="at">text.col =</span> col.density, <span class="at">bty =</span> <span class="st">&quot;n&quot;</span>)</span></code></pre></div>
+<p><img src="figures/density%20plots-1.png" width="1440" /></p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="preprocessing-the-data.html#cb42-1" tabindex="-1"></a><span class="co"># dev.off()</span></span></code></pre></div>
+</div>
+<div id="normalise-the-counts" class="section level2 unnumbered hasAnchor">
+<h2>Normalise the counts<a href="preprocessing-the-data.html#normalise-the-counts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>During sample preparation or sequencing, factors unrelated to biological processes can influence the expression of individual samples. The expectation is that all samples should exhibit a comparable range and distribution of expression values. To ensure uniformity across the entire experiment, normalization becomes necessary. Commonly, raw counts are transformed into a scale that accounts for differences in library sizes.</p>
+<p>In our case, we first employed the <code>cpm</code> function in <code>edgeR</code> to transform raw counts into counts per million (CPM) and log2-counts per million (log-CPM) values. This transformation facilitates a standardized representation of expression values, enabling more meaningful comparisons across samples.</p>
+<div id="cpm-normalised-counts" class="section level3 unnumbered hasAnchor">
+<h3>CPM normalised counts<a href="preprocessing-the-data.html#cpm-normalised-counts" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="preprocessing-the-data.html#cb43-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>))</span>
+<span id="cb43-2"><a href="preprocessing-the-data.html#cb43-2" tabindex="-1"></a>yy <span class="ot">&lt;-</span> d[, <span class="fu">order</span>(d<span class="sc">$</span>samples<span class="sc">$</span>group, <span class="fu">colSums</span>(d<span class="sc">$</span>counts))]</span>
+<span id="cb43-3"><a href="preprocessing-the-data.html#cb43-3" tabindex="-1"></a>yy.logcpm <span class="ot">&lt;-</span> <span class="fu">cpm</span>(yy, <span class="at">log =</span> T)</span>
+<span id="cb43-4"><a href="preprocessing-the-data.html#cb43-4" tabindex="-1"></a><span class="fu">boxplot</span>(yy.logcpm, <span class="at">las =</span> <span class="dv">2</span>, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> col[<span class="fu">as.factor</span>(yy<span class="sc">$</span>samples<span class="sc">$</span>group)], <span class="at">outcex =</span> <span class="fl">0.3</span>,</span>
+<span id="cb43-5"><a href="preprocessing-the-data.html#cb43-5" tabindex="-1"></a>    <span class="at">outcol =</span> col[<span class="fu">as.factor</span>(yy<span class="sc">$</span>samples<span class="sc">$</span>group)], <span class="at">labels =</span> <span class="fu">colnames</span>(yy.logcpm), <span class="at">main =</span> <span class="st">&quot;A. CPM normalised raw data&quot;</span>,</span>
+<span id="cb43-6"><a href="preprocessing-the-data.html#cb43-6" tabindex="-1"></a>    <span class="at">ylab =</span> <span class="st">&quot;SgRNA representation (log2 cpm normalised reads)&quot;</span>)</span>
+<span id="cb43-7"><a href="preprocessing-the-data.html#cb43-7" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="at">legend =</span> <span class="fu">levels</span>(<span class="fu">factor</span>(yy<span class="sc">$</span>samples<span class="sc">$</span>group)), <span class="at">col =</span> col, <span class="at">pch =</span> <span class="dv">19</span>,</span>
+<span id="cb43-8"><a href="preprocessing-the-data.html#cb43-8" tabindex="-1"></a>    <span class="at">cex =</span> <span class="fl">0.5</span>)</span>
+<span id="cb43-9"><a href="preprocessing-the-data.html#cb43-9" tabindex="-1"></a></span>
+<span id="cb43-10"><a href="preprocessing-the-data.html#cb43-10" tabindex="-1"></a>yy <span class="ot">&lt;-</span> d.filtered.p[, <span class="fu">order</span>(d.filtered.p<span class="sc">$</span>samples<span class="sc">$</span>group, <span class="fu">colSums</span>(d.filtered.p<span class="sc">$</span>counts))]</span>
+<span id="cb43-11"><a href="preprocessing-the-data.html#cb43-11" tabindex="-1"></a>yy.logcpm <span class="ot">&lt;-</span> <span class="fu">cpm</span>(yy, <span class="at">log =</span> T)</span>
+<span id="cb43-12"><a href="preprocessing-the-data.html#cb43-12" tabindex="-1"></a><span class="fu">boxplot</span>(yy.logcpm, <span class="at">las =</span> <span class="dv">2</span>, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> col[<span class="fu">as.factor</span>(yy<span class="sc">$</span>samples<span class="sc">$</span>group)], <span class="at">outcex =</span> <span class="fl">0.3</span>,</span>
+<span id="cb43-13"><a href="preprocessing-the-data.html#cb43-13" tabindex="-1"></a>    <span class="at">outcol =</span> col[<span class="fu">as.factor</span>(yy<span class="sc">$</span>samples<span class="sc">$</span>group)], <span class="at">labels =</span> <span class="fu">colnames</span>(yy.logcpm), <span class="at">main =</span> <span class="st">&quot;B. CPM normalised permissively filtered data&quot;</span>,</span>
+<span id="cb43-14"><a href="preprocessing-the-data.html#cb43-14" tabindex="-1"></a>    <span class="at">ylab =</span> <span class="st">&quot;SgRNA representation (log2 cpm normalised reads)&quot;</span>)</span>
+<span id="cb43-15"><a href="preprocessing-the-data.html#cb43-15" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="at">legend =</span> <span class="fu">levels</span>(<span class="fu">factor</span>(yy<span class="sc">$</span>samples<span class="sc">$</span>group)), <span class="at">col =</span> col, <span class="at">pch =</span> <span class="dv">19</span>,</span>
+<span id="cb43-16"><a href="preprocessing-the-data.html#cb43-16" tabindex="-1"></a>    <span class="at">cex =</span> <span class="fl">0.5</span>)</span>
+<span id="cb43-17"><a href="preprocessing-the-data.html#cb43-17" tabindex="-1"></a></span>
+<span id="cb43-18"><a href="preprocessing-the-data.html#cb43-18" tabindex="-1"></a>yy <span class="ot">&lt;-</span> d.filtered.s[, <span class="fu">order</span>(d.filtered.s<span class="sc">$</span>samples<span class="sc">$</span>group, <span class="fu">colSums</span>(d.filtered.s<span class="sc">$</span>counts))]</span>
+<span id="cb43-19"><a href="preprocessing-the-data.html#cb43-19" tabindex="-1"></a>yy.logcpm <span class="ot">&lt;-</span> <span class="fu">cpm</span>(yy, <span class="at">log =</span> T)</span>
+<span id="cb43-20"><a href="preprocessing-the-data.html#cb43-20" tabindex="-1"></a><span class="fu">boxplot</span>(yy.logcpm, <span class="at">las =</span> <span class="dv">2</span>, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> col[<span class="fu">as.factor</span>(yy<span class="sc">$</span>samples<span class="sc">$</span>group)], <span class="at">outcex =</span> <span class="fl">0.3</span>,</span>
+<span id="cb43-21"><a href="preprocessing-the-data.html#cb43-21" tabindex="-1"></a>    <span class="at">outcol =</span> col[<span class="fu">as.factor</span>(yy<span class="sc">$</span>samples<span class="sc">$</span>group)], <span class="at">labels =</span> <span class="fu">colnames</span>(yy.logcpm), <span class="at">main =</span> <span class="st">&quot;C. CPM normalised strictly filtered data&quot;</span>,</span>
+<span id="cb43-22"><a href="preprocessing-the-data.html#cb43-22" tabindex="-1"></a>    <span class="at">ylab =</span> <span class="st">&quot;SgRNA representation (log2 cpm normalised reads)&quot;</span>)</span>
+<span id="cb43-23"><a href="preprocessing-the-data.html#cb43-23" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="at">legend =</span> <span class="fu">levels</span>(<span class="fu">factor</span>(yy<span class="sc">$</span>samples<span class="sc">$</span>group)), <span class="at">col =</span> col, <span class="at">pch =</span> <span class="dv">19</span>,</span>
+<span id="cb43-24"><a href="preprocessing-the-data.html#cb43-24" tabindex="-1"></a>    <span class="at">cex =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<p><img src="figures/library%20sizes%20after%20filtering%20and%20CPM%20normalization-1.png" width="1440" /></p>
+<p>Following that, we implemented the <code>TMM</code> normalization using the <code>normLibSizes</code> function within the <code>edgeR</code> package. When dealing with DGEList objects, the normalization factors are automatically stored in the DGEList object.</p>
+<p>In the permissively filtered data, the influence of TMM normalization is modest, as suggested by the scaling factors, all of which are reasonably close to 1. However, notable is the fact that the normalization factors for ToxB samples are below one. This implies that a small number of highly abundant guide counts disproportionately influence the sequencing, causing counts for other genes to be lower than expected based on the library size. Consequently, the library size will be reduced, akin to scaling up the counts within that library. Such a scenario is typical in CRISPR screens.</p>
+<p>To address this, introducing a prior value to the counts—sufficiently small to avoid altering the overall data distribution—serves to balance the library sizes, mitigating the impact of a few highly expressed guides.</p>
+</div>
+<div id="tmm-normalised-counts" class="section level3 unnumbered hasAnchor">
+<h3>TMM normalised counts<a href="preprocessing-the-data.html#tmm-normalised-counts" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="preprocessing-the-data.html#cb44-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb44-2"><a href="preprocessing-the-data.html#cb44-2" tabindex="-1"></a>yy <span class="ot">&lt;-</span> d.filtered.p[, <span class="fu">order</span>(d.filtered.p<span class="sc">$</span>samples<span class="sc">$</span>group, <span class="fu">colSums</span>(d.filtered.p<span class="sc">$</span>counts))]</span>
+<span id="cb44-3"><a href="preprocessing-the-data.html#cb44-3" tabindex="-1"></a>yy<span class="sc">$</span>samples<span class="sc">$</span>norm.factors <span class="ot">&lt;-</span> <span class="fu">normLibSizes</span>(yy<span class="sc">$</span>counts, <span class="at">method =</span> <span class="st">&quot;TMM&quot;</span>)</span>
+<span id="cb44-4"><a href="preprocessing-the-data.html#cb44-4" tabindex="-1"></a>yy<span class="sc">$</span>samples[, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]  <span class="co"># TMM normalization factors of permissively filtered data</span></span></code></pre></div>
+<pre><code>            group lib.size norm.factors
+Control_2 Control   258228    1.3182523
+Control_1 Control   261610    1.3544882
+ToxA_2       ToxA   323563    1.1733655
+ToxA_1       ToxA   334876    1.2013967
+ToxB_2       ToxB   344894    0.5817462
+ToxB_1       ToxB   346781    0.6829248</code></pre>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="preprocessing-the-data.html#cb46-1" tabindex="-1"></a>yy.logcpm <span class="ot">&lt;-</span> <span class="fu">cpm</span>(yy, <span class="at">log =</span> T)</span>
+<span id="cb46-2"><a href="preprocessing-the-data.html#cb46-2" tabindex="-1"></a><span class="fu">boxplot</span>(yy.logcpm, <span class="at">las =</span> <span class="dv">2</span>, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> col[<span class="fu">as.factor</span>(yy<span class="sc">$</span>samples<span class="sc">$</span>group)], <span class="at">outcex =</span> <span class="fl">0.3</span>,</span>
+<span id="cb46-3"><a href="preprocessing-the-data.html#cb46-3" tabindex="-1"></a>    <span class="at">outcol =</span> col[<span class="fu">as.factor</span>(yy<span class="sc">$</span>samples<span class="sc">$</span>group)], <span class="at">labels =</span> <span class="fu">colnames</span>(yy.logcpm), <span class="at">main =</span> <span class="st">&quot;A. TMM normalised permissively filtered data&quot;</span>,</span>
+<span id="cb46-4"><a href="preprocessing-the-data.html#cb46-4" tabindex="-1"></a>    <span class="at">ylab =</span> <span class="st">&quot;SgRNA representation (log2 cpm normalised reads)&quot;</span>)</span>
+<span id="cb46-5"><a href="preprocessing-the-data.html#cb46-5" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="at">legend =</span> <span class="fu">levels</span>(<span class="fu">factor</span>(yy<span class="sc">$</span>samples<span class="sc">$</span>group)), <span class="at">col =</span> col, <span class="at">pch =</span> <span class="dv">19</span>,</span>
+<span id="cb46-6"><a href="preprocessing-the-data.html#cb46-6" tabindex="-1"></a>    <span class="at">cex =</span> <span class="fl">0.5</span>)</span>
+<span id="cb46-7"><a href="preprocessing-the-data.html#cb46-7" tabindex="-1"></a></span>
+<span id="cb46-8"><a href="preprocessing-the-data.html#cb46-8" tabindex="-1"></a>yy <span class="ot">&lt;-</span> d.filtered.p[, <span class="fu">order</span>(d.filtered.p<span class="sc">$</span>samples<span class="sc">$</span>group, <span class="fu">colSums</span>(d.filtered.p<span class="sc">$</span>counts))]</span>
+<span id="cb46-9"><a href="preprocessing-the-data.html#cb46-9" tabindex="-1"></a>yy<span class="sc">$</span>samples<span class="sc">$</span>norm.factors <span class="ot">&lt;-</span> <span class="fu">normLibSizes</span>(yy<span class="sc">$</span>counts <span class="sc">+</span> <span class="dv">100</span>, <span class="at">method =</span> <span class="st">&quot;TMM&quot;</span>)</span>
+<span id="cb46-10"><a href="preprocessing-the-data.html#cb46-10" tabindex="-1"></a>yy<span class="sc">$</span>samples[, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]  <span class="co"># TMM normalization factors of permissively filtered data after adding a prior count of 100</span></span></code></pre></div>
+<pre><code>            group lib.size norm.factors
+Control_2 Control   258228    1.0193334
+Control_1 Control   261610    1.0187857
+ToxA_2       ToxA   323563    0.9939975
+ToxA_1       ToxA   334876    0.9917365
+ToxB_2       ToxB   344894    0.9884410
+ToxB_1       ToxB   346781    0.9882539</code></pre>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="preprocessing-the-data.html#cb48-1" tabindex="-1"></a>yy.logcpm <span class="ot">&lt;-</span> <span class="fu">cpm</span>(yy, <span class="at">log =</span> T)</span>
+<span id="cb48-2"><a href="preprocessing-the-data.html#cb48-2" tabindex="-1"></a><span class="fu">boxplot</span>(yy.logcpm, <span class="at">las =</span> <span class="dv">2</span>, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> col[<span class="fu">as.factor</span>(yy<span class="sc">$</span>samples<span class="sc">$</span>group)], <span class="at">outcex =</span> <span class="fl">0.3</span>,</span>
+<span id="cb48-3"><a href="preprocessing-the-data.html#cb48-3" tabindex="-1"></a>    <span class="at">outcol =</span> col[<span class="fu">as.factor</span>(yy<span class="sc">$</span>samples<span class="sc">$</span>group)], <span class="at">labels =</span> <span class="fu">colnames</span>(yy.logcpm), <span class="at">main =</span> <span class="st">&quot;B. TMM offset-normalised permissively filtered data&quot;</span>,</span>
+<span id="cb48-4"><a href="preprocessing-the-data.html#cb48-4" tabindex="-1"></a>    <span class="at">ylab =</span> <span class="st">&quot;SgRNA representation (log2 cpm normalised reads)&quot;</span>)</span>
+<span id="cb48-5"><a href="preprocessing-the-data.html#cb48-5" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="at">legend =</span> <span class="fu">levels</span>(<span class="fu">factor</span>(yy<span class="sc">$</span>samples<span class="sc">$</span>group)), <span class="at">col =</span> col, <span class="at">pch =</span> <span class="dv">19</span>,</span>
+<span id="cb48-6"><a href="preprocessing-the-data.html#cb48-6" tabindex="-1"></a>    <span class="at">cex =</span> <span class="fl">0.5</span>)</span>
+<span id="cb48-7"><a href="preprocessing-the-data.html#cb48-7" tabindex="-1"></a>yy.norm <span class="ot">&lt;-</span> yy  <span class="co"># we continue downstream analysis with this object</span></span>
+<span id="cb48-8"><a href="preprocessing-the-data.html#cb48-8" tabindex="-1"></a></span>
+<span id="cb48-9"><a href="preprocessing-the-data.html#cb48-9" tabindex="-1"></a>yy <span class="ot">&lt;-</span> d.filtered.s[, <span class="fu">order</span>(d.filtered.s<span class="sc">$</span>samples<span class="sc">$</span>group, <span class="fu">colSums</span>(d.filtered.s<span class="sc">$</span>counts))]</span>
+<span id="cb48-10"><a href="preprocessing-the-data.html#cb48-10" tabindex="-1"></a>yy<span class="sc">$</span>samples<span class="sc">$</span>norm.factors <span class="ot">&lt;-</span> <span class="fu">normLibSizes</span>(yy<span class="sc">$</span>counts, <span class="at">method =</span> <span class="st">&quot;TMM&quot;</span>)</span>
+<span id="cb48-11"><a href="preprocessing-the-data.html#cb48-11" tabindex="-1"></a>yy<span class="sc">$</span>samples[, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]  <span class="co"># TMM normalization factors of strictly filtered data</span></span></code></pre></div>
 <pre><code>            group lib.size norm.factors
 Control_1 Control    56390    2.0995847
 Control_2 Control    57402    1.8983192
-ToxA_1       ToxA   283958    1.8621100
 ToxA_2       ToxA   242030    1.9418813
+ToxA_1       ToxA   283958    1.8621100
 ToxB_1       ToxB   298310    0.2919254
 ToxB_2       ToxB   300952    0.2376826</code></pre>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="preprocessing-the-data.html#cb42-1" tabindex="-1"></a>yy.norm<span class="sc">$</span>samples<span class="sc">$</span>norm.factors <span class="ot">&lt;-</span> <span class="fu">calcNormFactors</span>(yy.norm<span class="sc">$</span>counts <span class="sc">+</span> <span class="dv">100</span>, <span class="at">method =</span> <span class="st">&quot;upperquartile&quot;</span>)</span>
-<span id="cb42-2"><a href="preprocessing-the-data.html#cb42-2" tabindex="-1"></a>yy.norm<span class="sc">$</span>samples[, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]  <span class="co"># Upperquartile norm factors of strict filtered data</span></span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="preprocessing-the-data.html#cb50-1" tabindex="-1"></a>yy.logcpm <span class="ot">&lt;-</span> <span class="fu">cpm</span>(yy, <span class="at">log =</span> T)</span>
+<span id="cb50-2"><a href="preprocessing-the-data.html#cb50-2" tabindex="-1"></a><span class="fu">boxplot</span>(yy.logcpm, <span class="at">las =</span> <span class="dv">2</span>, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> col[<span class="fu">as.factor</span>(yy<span class="sc">$</span>samples<span class="sc">$</span>group)], <span class="at">outcex =</span> <span class="fl">0.3</span>,</span>
+<span id="cb50-3"><a href="preprocessing-the-data.html#cb50-3" tabindex="-1"></a>    <span class="at">outcol =</span> col[<span class="fu">as.factor</span>(yy<span class="sc">$</span>samples<span class="sc">$</span>group)], <span class="at">labels =</span> <span class="fu">colnames</span>(yy.logcpm), <span class="at">main =</span> <span class="st">&quot;C. TMM normalised strictly filtered data&quot;</span>,</span>
+<span id="cb50-4"><a href="preprocessing-the-data.html#cb50-4" tabindex="-1"></a>    <span class="at">ylab =</span> <span class="st">&quot;SgRNA representation (log2 cpm normalised reads)&quot;</span>)</span>
+<span id="cb50-5"><a href="preprocessing-the-data.html#cb50-5" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="at">legend =</span> <span class="fu">levels</span>(<span class="fu">factor</span>(yy<span class="sc">$</span>samples<span class="sc">$</span>group)), <span class="at">col =</span> col, <span class="at">pch =</span> <span class="dv">19</span>,</span>
+<span id="cb50-6"><a href="preprocessing-the-data.html#cb50-6" tabindex="-1"></a>    <span class="at">cex =</span> <span class="fl">0.5</span>)</span>
+<span id="cb50-7"><a href="preprocessing-the-data.html#cb50-7" tabindex="-1"></a></span>
+<span id="cb50-8"><a href="preprocessing-the-data.html#cb50-8" tabindex="-1"></a>yy <span class="ot">&lt;-</span> d.filtered.s[, <span class="fu">order</span>(d.filtered.s<span class="sc">$</span>samples<span class="sc">$</span>group, <span class="fu">colSums</span>(d.filtered.s<span class="sc">$</span>counts))]</span>
+<span id="cb50-9"><a href="preprocessing-the-data.html#cb50-9" tabindex="-1"></a>yy<span class="sc">$</span>samples<span class="sc">$</span>norm.factors <span class="ot">&lt;-</span> <span class="fu">normLibSizes</span>(yy<span class="sc">$</span>counts <span class="sc">+</span> <span class="dv">100</span>, <span class="at">method =</span> <span class="st">&quot;TMM&quot;</span>)</span>
+<span id="cb50-10"><a href="preprocessing-the-data.html#cb50-10" tabindex="-1"></a>yy<span class="sc">$</span>samples[, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]  <span class="co"># TMM normalization factors of strictly filtered data after adding a prior count of 100</span></span></code></pre></div>
 <pre><code>            group lib.size norm.factors
-Control_1 Control    56390    1.0911486
-Control_2 Control    57402    1.0899719
-ToxA_1       ToxA   283958    1.0935077
-ToxA_2       ToxA   242030    1.0929344
-ToxB_1       ToxB   298310    0.8436597
-ToxB_2       ToxB   300952    0.8339069</code></pre>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="preprocessing-the-data.html#cb44-1" tabindex="-1"></a>yy.norm <span class="ot">&lt;-</span> d.filtered.p</span>
-<span id="cb44-2"><a href="preprocessing-the-data.html#cb44-2" tabindex="-1"></a>yy.norm<span class="sc">$</span>samples<span class="sc">$</span>norm.factors <span class="ot">&lt;-</span> <span class="fu">calcNormFactors</span>(yy.norm<span class="sc">$</span>counts, <span class="at">method =</span> <span class="st">&quot;TMM&quot;</span>)</span>
-<span id="cb44-3"><a href="preprocessing-the-data.html#cb44-3" tabindex="-1"></a>yy.norm<span class="sc">$</span>samples[, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]  <span class="co"># TMM norm factors of permissive filtered data</span></span></code></pre></div>
-<pre><code>            group lib.size norm.factors
-Control_1 Control   338214    1.3660602
-Control_2 Control   337711    1.3232627
-ToxA_1       ToxA   344188    1.2026100
-ToxA_2       ToxA   335848    1.1862281
-ToxB_1       ToxB   356569    0.6792538
-ToxB_2       ToxB   355131    0.5708986</code></pre>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="preprocessing-the-data.html#cb46-1" tabindex="-1"></a>yy.norm<span class="sc">$</span>samples<span class="sc">$</span>norm.factors <span class="ot">&lt;-</span> <span class="fu">calcNormFactors</span>(yy.norm<span class="sc">$</span>counts <span class="sc">+</span> <span class="dv">100</span>, <span class="at">method =</span> <span class="st">&quot;upperquartile&quot;</span>)</span>
-<span id="cb46-2"><a href="preprocessing-the-data.html#cb46-2" tabindex="-1"></a>yy.norm<span class="sc">$</span>samples[, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]  <span class="co"># Upperquartile norm factors of permissive filtered data</span></span></code></pre></div>
-<pre><code>            group lib.size norm.factors
-Control_1 Control   338214    1.0326478
-Control_2 Control   337711    1.0332658
-ToxA_1       ToxA   344188    0.9818947
-ToxA_2       ToxA   335848    1.0031259
-ToxB_1       ToxB   356569    0.9801216
-ToxB_2       ToxB   355131    0.9708126</code></pre>
+Control_1 Control    56390    1.1054064
+Control_2 Control    57402    1.1063956
+ToxA_2       ToxA   242030    1.0496637
+ToxA_1       ToxA   283958    1.0223192
+ToxB_1       ToxB   298310    0.8749980
+ToxB_2       ToxB   300952    0.8708108</code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="preprocessing-the-data.html#cb52-1" tabindex="-1"></a>yy.logcpm <span class="ot">&lt;-</span> <span class="fu">cpm</span>(yy, <span class="at">log =</span> T)</span>
+<span id="cb52-2"><a href="preprocessing-the-data.html#cb52-2" tabindex="-1"></a><span class="fu">boxplot</span>(yy.logcpm, <span class="at">las =</span> <span class="dv">2</span>, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> col[<span class="fu">as.factor</span>(yy<span class="sc">$</span>samples<span class="sc">$</span>group)], <span class="at">outcex =</span> <span class="fl">0.3</span>,</span>
+<span id="cb52-3"><a href="preprocessing-the-data.html#cb52-3" tabindex="-1"></a>    <span class="at">outcol =</span> col[<span class="fu">as.factor</span>(yy<span class="sc">$</span>samples<span class="sc">$</span>group)], <span class="at">labels =</span> <span class="fu">colnames</span>(yy.logcpm), <span class="at">main =</span> <span class="st">&quot;D. TMM offset-normalised strictly filtered data&quot;</span>,</span>
+<span id="cb52-4"><a href="preprocessing-the-data.html#cb52-4" tabindex="-1"></a>    <span class="at">ylab =</span> <span class="st">&quot;SgRNA representation (log2 cpm normalised reads)&quot;</span>)</span>
+<span id="cb52-5"><a href="preprocessing-the-data.html#cb52-5" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="at">legend =</span> <span class="fu">levels</span>(<span class="fu">factor</span>(yy<span class="sc">$</span>samples<span class="sc">$</span>group)), <span class="at">col =</span> col, <span class="at">pch =</span> <span class="dv">19</span>,</span>
+<span id="cb52-6"><a href="preprocessing-the-data.html#cb52-6" tabindex="-1"></a>    <span class="at">cex =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<p><img src="figures/library%20sizes%20after%20filtering%20and%20TMM%20normalization-1.png" width="960" /></p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="preprocessing-the-data.html#cb53-1" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<pre><code>RStudioGD 
+        2 </code></pre>
 </div>
-<div id="mds-plots" class="section level2 unnumbered hasAnchor">
-<h2>MDS plots<a href="preprocessing-the-data.html#mds-plots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="preprocessing-the-data.html#cb48-1" tabindex="-1"></a>cols <span class="ot">&lt;-</span> col</span>
-<span id="cb48-2"><a href="preprocessing-the-data.html#cb48-2" tabindex="-1"></a><span class="fu">plotMDS</span>(yy.norm, <span class="at">col =</span> cols[<span class="fu">factor</span>(yy.norm<span class="sc">$</span>samples<span class="sc">$</span>group)], <span class="at">main =</span> <span class="st">&quot;MDS plot before normalisation&quot;</span>,</span>
-<span id="cb48-3"><a href="preprocessing-the-data.html#cb48-3" tabindex="-1"></a>    <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">cex =</span> <span class="dv">2</span>)</span>
-<span id="cb48-4"><a href="preprocessing-the-data.html#cb48-4" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;bottomright&quot;</span>, <span class="at">legend =</span> <span class="fu">levels</span>(<span class="fu">factor</span>(yy.norm<span class="sc">$</span>samples<span class="sc">$</span>group)), <span class="at">col =</span> cols,</span>
-<span id="cb48-5"><a href="preprocessing-the-data.html#cb48-5" tabindex="-1"></a>    <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">cex =</span> <span class="fl">0.8</span>)</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/mds%20plot%20normalisation-1.png" width="576" /></p>
+</div>
+<div id="unsupervised-clustering-of-samples" class="section level2 unnumbered hasAnchor">
+<h2>Unsupervised clustering of samples<a href="preprocessing-the-data.html#unsupervised-clustering-of-samples" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A Multi-dimensional Scaling (MDS) plot visually depicts the similarities and differences among samples in an unsupervised manner, providing a preliminary understanding of the potential for identifying differential abundance before formal testing. The leading fold-change is conventionally defined as the root-mean-square of the largest 500 log2-fold changes between sample pairs.</p>
+<p>For this purpose, we utilize the <code>plotMDS</code> function from the <code>limma</code> package. It’s worth noting that loading the <code>limma</code> package is redundant, as <code>edgeR</code> already includes and invokes its functions.</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="preprocessing-the-data.html#cb55-1" tabindex="-1"></a>lcpm <span class="ot">&lt;-</span> <span class="fu">cpm</span>(yy.norm, <span class="at">log =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb55-2"><a href="preprocessing-the-data.html#cb55-2" tabindex="-1"></a>cols <span class="ot">&lt;-</span> col</span>
+<span id="cb55-3"><a href="preprocessing-the-data.html#cb55-3" tabindex="-1"></a><span class="fu">plotMDS</span>(lcpm, <span class="at">col =</span> cols[<span class="fu">factor</span>(yy.norm<span class="sc">$</span>samples<span class="sc">$</span>group)], <span class="at">main =</span> <span class="st">&quot;MDS plot of permissevly filtered and TMM offset-normalised data&quot;</span>,</span>
+<span id="cb55-4"><a href="preprocessing-the-data.html#cb55-4" tabindex="-1"></a>    <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">cex =</span> <span class="dv">2</span>)</span>
+<span id="cb55-5"><a href="preprocessing-the-data.html#cb55-5" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;bottomright&quot;</span>, <span class="at">legend =</span> <span class="fu">levels</span>(<span class="fu">factor</span>(yy.norm<span class="sc">$</span>samples<span class="sc">$</span>group)), <span class="at">col =</span> cols,</span>
+<span id="cb55-6"><a href="preprocessing-the-data.html#cb55-6" tabindex="-1"></a>    <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">cex =</span> <span class="fl">0.8</span>)</span></code></pre></div>
+<p><img src="figures/mds%20plot%20normalization-1.png" width="768" /></p>
+<p>We can see that the biological replicates of control and treated samples cluster well within the groups over dimension 1 and 2. The first dimension accounts for largest variability in the data. Then the larger the dimension, the lower the variation is. While samples exhibit grouping tendencies, there are significant abundance distinctions between control and treated samples. Consequently, we anticipate that when performing pairwise comparisons among control and treated samples, there will be a higher count of differentially abundant guides in comparisons.</p>
+</div>
+<div id="visualise-guide-abundance-profiles-of-samples" class="section level2 unnumbered hasAnchor">
+<h2>Visualise guide abundance profiles of samples<a href="preprocessing-the-data.html#visualise-guide-abundance-profiles-of-samples" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A more detailed exploration of the normalization procedure applied to individual samples can be accomplished using mean-difference (MD) plots. In an MD plot, the library size-adjusted log-fold change between two libraries (the difference) is graphed against the average log-expression across those libraries (the mean). It is a good practice to look at MD plots for all samples for a quality check. We use <code>plotMD</code> from <code>edgeR</code> package to do that.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="preprocessing-the-data.html#cb56-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">2</span>))</span>
+<span id="cb56-2"><a href="preprocessing-the-data.html#cb56-2" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>) {</span>
+<span id="cb56-3"><a href="preprocessing-the-data.html#cb56-3" tabindex="-1"></a>    <span class="fu">plotMD</span>(yy, <span class="at">column =</span> i)</span>
+<span id="cb56-4"><a href="preprocessing-the-data.html#cb56-4" tabindex="-1"></a>    <span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb56-5"><a href="preprocessing-the-data.html#cb56-5" tabindex="-1"></a>}</span></code></pre></div>
+<p><img src="figures/volcano-1.png" width="960" /></p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="preprocessing-the-data.html#cb57-1" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<pre><code>RStudioGD 
+        2 </code></pre>
+<p>If the bulk of the counts are centered around the line of zero log-fold change. The diagonal lines in the lower left of the plot correspond to genes with counts of 0, 1, 2 and so on in the first sample.</p>
+<p>For a good quality, we expect he majority of the counts to be concentrated near the zero log-fold change line. However, this is hardly ever the case for CRISPR experiments due to the sparse nature of CRISPR screen counts. The diagonal lines in the lower-left portion of the plot correspond to guides with counts of very low numbers. And it is typical for treated samples to observe a positive skew, with a number of very highly upregulated guides in the upper right of the plots. These points correspond to the guides that are both highly abundant and highly up-regulated in the given sample compared to others. Especially ToxB samples are more positively skewed than ToxA samples. These guides also explain why the normalization factor for ToxB samples were well below one before adding an offset. By contrast, the log-ratios for control samples were somewhat negatively skewed, corresponding to their normalization factor above one.
+Although we used TMM normalization with an added offset to the counts, a more specialized normalization methods are needed for accurate CRISPR screen analyses.</p>
 </div>
 </div>
             </section>
@@ -422,7 +551,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/index.Rmd",
+"link": "https://github.com/goknurginer/Analysing-CRISPR-screens-with-edgeRindex.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -433,7 +562,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"download": ["Analysing-CRISPR-screens-with-edgeR.pdf", "Analysing-CRISPR-screens-with-edgeR.epub"],
 "search": {
 "engine": "fuse",
 "options": null
@@ -445,6 +574,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
